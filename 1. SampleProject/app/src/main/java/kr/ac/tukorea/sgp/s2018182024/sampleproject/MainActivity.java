@@ -15,26 +15,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button btn = findViewById(R.id.changeStringBtn);
-        btn.setOnClickListener(changeStringBtnOnClickHandler);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView tv = findViewById(R.id.snumTextView);
+                tv.setText("변경된 문자열");
+            }
+        });
 
         btn = findViewById(R.id.anotherBtn);
-        btn.setOnClickListener(anotherBtnOnClickHandler);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView tv = findViewById(R.id.snumTextView);
+                tv.setText("다른 문자열");
+            }
+        });
     }
-
-    // app 이 실행될 때 해당 멤버가 new 되고, 이 멤버는 onClick 이라는 함수를 가지고 있음
-    private View.OnClickListener changeStringBtnOnClickHandler = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            TextView tv = findViewById(R.id.snumTextView);
-            tv.setText("새로운 문자열");
-        }
-    };
-
-    private View.OnClickListener anotherBtnOnClickHandler = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            TextView tv = findViewById(R.id.snumTextView);
-            tv.setText("다른 문자열");
-        }
-    };
 }
