@@ -13,23 +13,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
 
-        Button btn = findViewById(R.id.changeStringBtn);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView tv = findViewById(R.id.snumTextView);
-                tv.setText("변경된 문자열");
-            }
-        });
+    public void onBtnChangeString(View view){
+        TextView tv = findViewById(R.id.snumTextView);
+        tv.setText("변경된 문자열");
+    }
 
-        btn = findViewById(R.id.anotherBtn);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView tv = findViewById(R.id.snumTextView);
-                tv.setText("다른 문자열");
-            }
-        });
+    public void onBtnAnother(View view) {
+        TextView tv = findViewById(R.id.snumTextView);
+        tv.setText("다른 문자열");
     }
 }
