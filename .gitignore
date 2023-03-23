@@ -1,5 +1,6 @@
 #built application files
 *.apk
+*.aar
 *.ap_
 *.aab
                            
@@ -12,6 +13,7 @@
 # generated files
 bin/
 gen/
+out/
                             
 # Local configuration file (sdk path, etc)
 local.properties
@@ -34,6 +36,29 @@ output.json
 #NDK
 obj/
 .externalNativeBuild
+.cxx/
 
 # Log Files
 *.log
+
+# Freeline
+freeline.py
+freeline/
+freeline_project_description.json
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/readme.md
+
+# Version control
+vcs.xml
+
+# lint
+lint/intermediates/
+lint/generated/
+lint/outputs/
+lint/tmp/
+# lint/reports/
