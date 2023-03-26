@@ -8,6 +8,14 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/emojiTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pay_good_emoji"
+        android:textSize="32sp"
+        android:layout_marginHorizontal="8dp"
+        />
+    <TextView
         android:id="@+id/outputTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,6 +24,7 @@
         android:padding="8dp"
         />
     <CheckBox
+        android:onClick="onCheckBoxGoodProgrammer"
         android:id="@+id/goodProgrammerCheckbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

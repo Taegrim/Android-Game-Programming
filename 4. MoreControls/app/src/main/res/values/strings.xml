@@ -5,4 +5,6 @@
     <string name="do_it_button_text">Do It!</string>
     <string name="pay_for_good">I\'ll pay 100\'000\'000 won a year</string>
     <string name="pay_for_not_good">Good bye</string>
+    <string name="pay_good_emoji">😍</string>
+    <string name="pay_not_goot_emoji">😔</string>
 </resources>
