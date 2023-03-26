@@ -1,7 +1,9 @@
 package kr.ac.tukorea.sgp.s2018182024.memorygame;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,8 +14,10 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private int flips;
+
     private TextView flipsTextView;
+    private int flips;
+    private int openCardCount;
 
     private static final int[] BUTTON_IDS = new int[] {
             R.id.card_00,R.id.card_01,R.id.card_02,R.id.card_03,
@@ -29,12 +33,24 @@ public class MainActivity extends AppCompatActivity {
             R.mipmap.card_as,R.mipmap.card_qh,R.mipmap.card_jc,R.mipmap.card_kd,
     };
 
+    private void startGame(){
+        setFlips(0);
+        openCardCount = 0;
+        for(int i = 0; i < BUTTON_IDS.length; ++i){
+            ImageButton btn = findViewById(BUTTON_IDS[i]);
+            btn.setVisibility(View.VISIBLE);
+            btn.setImageResource(R.mipmap.card_blue_back);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         flipsTextView = findViewById(R.id.flipsTextView);
+
+        startGame();
     }
 
     // 버튼 id, index 를 담는 해시맵
@@ -57,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageButton prevImageButton;
 
-    private void SetFlips(int flips){
+    private void setFlips(int flips){
         this.flips = flips;
         flipsTextView.setText("Flips : " + flips);
     }
@@ -71,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        SetFlips(this.flips + 1);
+        setFlips(this.flips + 1);
         int resId = RESOURCE_IDS[index];
         btn.setImageResource(resId);
 
@@ -81,6 +97,9 @@ public class MainActivity extends AppCompatActivity {
                 btn.setVisibility(View.INVISIBLE);
                 prevImageButton.setVisibility(View.INVISIBLE);
                 prevImageButton = null;
+                openCardCount += 2;
+                if(openCardCount == BUTTON_IDS.length)
+                    askRetry();
                 return;
             }
             else {
@@ -91,6 +110,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBtnRestart(View view) {
+        askRetry();
+    }
 
+    private void askRetry(){
+//      빌더 패턴을 이용한 AlertDialog 생성
+        new AlertDialog.Builder(this)
+                .setTitle("Restart")
+                .setMessage("Do tou want to restart the game?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Log.d(TAG, "Restart");
+                        startGame();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .create()
+                .show();
     }
 }
