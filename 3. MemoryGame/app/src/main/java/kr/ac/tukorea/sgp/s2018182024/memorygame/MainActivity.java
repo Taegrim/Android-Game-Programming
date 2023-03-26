@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             R.id.card_30,R.id.card_31,R.id.card_32,R.id.card_33,
     };
 
-    private static final int[] RESOURCE_IDS = new int[]{
+    private static int[] RESOURCE_IDS = new int[]{
             R.mipmap.card_2c,R.mipmap.card_3d,R.mipmap.card_4h,R.mipmap.card_5s,
             R.mipmap.card_as,R.mipmap.card_qh,R.mipmap.card_jc,R.mipmap.card_kd,
             R.mipmap.card_2c,R.mipmap.card_3d,R.mipmap.card_4h,R.mipmap.card_5s,
@@ -35,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void startGame(){
         setFlips(0);
+
+        Random r = new Random();
+        for(int i = 0; i < RESOURCE_IDS.length; ++i){
+            int t = r.nextInt(RESOURCE_IDS.length);
+            int resourceId = RESOURCE_IDS[t];
+            RESOURCE_IDS[t] = RESOURCE_IDS[i];
+            RESOURCE_IDS[i] = resourceId;
+        }
+
         openCardCount = 0;
         for(int i = 0; i < BUTTON_IDS.length; ++i){
             ImageButton btn = findViewById(BUTTON_IDS[i]);
@@ -84,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton btn = (ImageButton) view;
         if(btn == prevImageButton){
+            Toast.makeText(this, "Same Card", Toast.LENGTH_SHORT).show();
             return;
         }
 
