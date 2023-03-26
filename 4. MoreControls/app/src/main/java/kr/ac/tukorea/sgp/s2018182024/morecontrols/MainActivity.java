@@ -3,6 +3,8 @@ package kr.ac.tukorea.sgp.s2018182024.morecontrols;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -25,6 +27,24 @@ public class MainActivity extends AppCompatActivity {
         outputTextView = findViewById(R.id.outputTextView);
         emojiTextView = findViewById(R.id.emojiTextView);
         nameEditText = findViewById(R.id.nameEditText);
+
+        nameEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.v(TAG, "beforeTextChanged(i=" + i + ",i1=" + i1 + ",i2=" + "i2");
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.v(TAG, "onTextChanged(seq=" + charSequence + ",i=" + i + ",i1=" + i1 + ",i2=" + "i2");
+                outputTextView.setText(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Log.v(TAG, "afterTextChanged(" + editable.toString() + ")");
+            }
+        });
     }
 
     public void onBtnDoIt(View view) {
