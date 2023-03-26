@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MemoryGame</string>
+    <string name="restart_dialog_title">Restart</string>
+    <string name="restart_dialog_msg">Do tou want to restart the game?</string>
+    <string name="common_yes">Yes</string>
+    <string name="common_no">No</string>
+    <string name="toast_same_card">Same Card</string>
+    <string name="flips_count_fmt">Flips : %d</string>
+    <string name="restart">Restart</string>
 </resources>

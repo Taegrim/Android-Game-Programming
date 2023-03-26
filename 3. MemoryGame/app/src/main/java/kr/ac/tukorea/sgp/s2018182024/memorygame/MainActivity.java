@@ -86,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void setFlips(int flips){
         this.flips = flips;
-        flipsTextView.setText("Flips : " + flips);
+        String text = getString(R.string.flips_count_fmt, flips);
+        flipsTextView.setText(text);
     }
 
     public void onBtnCard(View view) {
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton btn = (ImageButton) view;
         if(btn == prevImageButton){
-            Toast.makeText(this, "Same Card", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toast_same_card, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -128,16 +129,16 @@ public class MainActivity extends AppCompatActivity {
     private void askRetry(){
 //      빌더 패턴을 이용한 AlertDialog 생성
         new AlertDialog.Builder(this)
-                .setTitle("Restart")
-                .setMessage("Do tou want to restart the game?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setTitle(R.string.restart_dialog_title)
+                .setMessage(R.string.restart_dialog_msg)
+                .setPositiveButton(R.string.common_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d(TAG, "Restart");
                         startGame();
                     }
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton(R.string.common_no, null)
                 .create()
                 .show();
     }
