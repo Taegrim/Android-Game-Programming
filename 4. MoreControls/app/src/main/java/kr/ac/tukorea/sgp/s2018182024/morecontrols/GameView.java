@@ -1,22 +1,23 @@
 package kr.ac.tukorea.sgp.s2018182024.morecontrols;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
+import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 /**
  * TODO: document your custom view class.
  */
 public class GameView extends View {
+    private static final String TAG = GameView.class.getSimpleName();
     private Paint paint;
     private Rect rect;
+    private RectF ovalRect; // float 값 저장하는 Rect
 
     public GameView(Context context) {
         super(context);
@@ -39,6 +40,9 @@ public class GameView extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
 
+    }
+
+    private void calcSize(){
         int paddingLeft = getPaddingLeft();
         int paddingTop = getPaddingTop();
         int paddingRight = getPaddingRight();
@@ -48,6 +52,14 @@ public class GameView extends View {
         int contentHeight = getHeight() - paddingTop - paddingBottom;
 
         rect = new Rect(paddingLeft, paddingTop, getWidth() - paddingRight, getHeight() - paddingBottom);
+        ovalRect = new RectF(rect.left, rect.top, rect.right, rect.bottom);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldW, int oldH) {
+        super.onSizeChanged(w, h, oldW, oldH);
+        Log.d(TAG, "onSizeChanged: " + w + "," + h);
+        calcSize();
     }
 
     @Override
@@ -57,5 +69,10 @@ public class GameView extends View {
         // TODO: consider storing these as member variables to reduce
         // allocations per draw cycle.
         canvas.drawRect(rect, paint);
+        drawSmiley(canvas);
+    }
+
+    private void drawSmiley(Canvas canvas){
+        canvas.drawOval(ovalRect, paint);
     }
 }
