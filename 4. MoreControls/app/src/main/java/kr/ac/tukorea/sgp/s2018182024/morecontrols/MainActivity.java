@@ -13,26 +13,19 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import kr.ac.tukorea.sgp.s2018182024.morecontrols.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private CheckBox goodProgrammerCheckbox;
-    private TextView outputTextView;
-    private TextView emojiTextView;
-    private EditText nameEditText;
-    private Switch immediateSwitch;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        goodProgrammerCheckbox = findViewById(R.id.goodProgrammerCheckbox);
-        outputTextView = findViewById(R.id.outputTextView);
-        emojiTextView = findViewById(R.id.emojiTextView);
-        nameEditText = findViewById(R.id.nameEditText);
-        immediateSwitch = findViewById(R.id.immediateSwitch);
-
-        nameEditText.addTextChangedListener(textWatcher);
+        binding.nameEditText.addTextChangedListener(textWatcher);
     }
 
     private TextWatcher textWatcher = new TextWatcher() {
@@ -44,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             Log.v(TAG, "onTextChanged(seq=" + charSequence + ",i=" + i + ",i1=" + i1 + ",i2=" + "i2");
-            outputTextView.setText(charSequence);
-            if(immediateSwitch.isChecked()){
+            binding.outputTextView.setText(charSequence);
+            if(binding.immediateSwitch.isChecked()){
                 doIt();
             }
         }
@@ -62,18 +55,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void doIt(){
-        int stringResId = goodProgrammerCheckbox.isChecked() ? R.string.pay_for_good_fmt : R.string.pay_for_not_good_fmt;
-        String name = nameEditText.getText().toString();
+        int stringResId = binding.goodProgrammerCheckbox.isChecked() ? R.string.pay_for_good_fmt : R.string.pay_for_not_good_fmt;
+        String name = binding.nameEditText.getText().toString();
         if(0 == name.trim().length()){
             name = "NoName";
         }
         String text = getString(stringResId, name);
-        outputTextView.setText(text);
+        binding.outputTextView.setText(text);
     }
 
     public void onCheckBoxGoodProgrammer(View view) {
-        int emojiResId = goodProgrammerCheckbox.isChecked() ? R.string.pay_good_emoji : R.string.pay_not_good_emoji;
-        emojiTextView.setText(getString(emojiResId));
+        int emojiResId = binding.goodProgrammerCheckbox.isChecked() ? R.string.pay_good_emoji : R.string.pay_not_good_emoji;
+        binding.emojiTextView.setText(getString(emojiResId));
     }
 
     public void onBtnNewActivity(View view) {
