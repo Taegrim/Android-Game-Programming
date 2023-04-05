@@ -74,4 +74,7 @@ public class MainActivity extends AppCompatActivity {
         int emojiResId = goodProgrammerCheckbox.isChecked() ? R.string.pay_good_emoji : R.string.pay_not_good_emoji;
         emojiTextView.setText(getString(emojiResId));
     }
+
+    public void onBtnNewActivity(View view) {
+    }
 }

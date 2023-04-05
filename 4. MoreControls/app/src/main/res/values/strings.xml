@@ -9,4 +9,5 @@
     <string name="pay_not_good_emoji">😔</string>
     <string name="enter_name_edit_text">Enter your name</string>
     <string name="immediate_switch_text">Apply immediately</string>
+    <string name="new_activity_button_text">New Activity</string>
 </resources>
