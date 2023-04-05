@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView outputTextView;
     private TextView emojiTextView;
     private EditText nameEditText;
+    private Switch immediateSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         outputTextView = findViewById(R.id.outputTextView);
         emojiTextView = findViewById(R.id.emojiTextView);
         nameEditText = findViewById(R.id.nameEditText);
+        immediateSwitch = findViewById(R.id.immediateSwitch);
+
         nameEditText.addTextChangedListener(textWatcher);
     }
 
@@ -40,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             Log.v(TAG, "onTextChanged(seq=" + charSequence + ",i=" + i + ",i1=" + i1 + ",i2=" + "i2");
             outputTextView.setText(charSequence);
+            if(immediateSwitch.isChecked()){
+                doIt();
+            }
         }
 
         @Override
@@ -50,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void onBtnDoIt(View view) {
         Log.d(TAG, "Do It!");
+        doIt();
+    }
+
+    private void doIt(){
         int stringResId = goodProgrammerCheckbox.isChecked() ? R.string.pay_for_good_fmt : R.string.pay_for_not_good_fmt;
         String name = nameEditText.getText().toString();
         if(0 == name.trim().length()){
