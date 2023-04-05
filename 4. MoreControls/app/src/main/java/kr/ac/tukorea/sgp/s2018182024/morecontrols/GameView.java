@@ -77,8 +77,19 @@ public class GameView extends View {
         // TODO: consider storing these as member variables to reduce
         // allocations per draw cycle.
         canvas.drawRect(rect, paint);
-        setCanvasRect(canvas, rect.left, rect.top, rect.width(), rect.height());
+        // setCanvasRect(canvas, rect.left, rect.top, rect.width(), rect.height());
+        int hw = rect.width() / 2;
+        int hh = rect.height() / 2;
+
+        canvas.save();
+        setCanvasRect(canvas, rect.left + hw/3, rect.top + hw/3, hw, hh);
         drawSmiley(canvas);
+        canvas.restore();
+
+        canvas.save();
+        setCanvasRect(canvas, rect.left + hw, rect.top + hh, hw/2, hh/2);
+        drawSmiley(canvas);
+        canvas.restore();
     }
 
     private void setCanvasRect(Canvas canvas, float left, float top, float width, float height){
