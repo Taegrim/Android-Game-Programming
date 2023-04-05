@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
@@ -20,6 +21,7 @@ public class BallView extends View {
     private static final String TAG = BallView.class.getSimpleName();
     private Paint paint = new Paint();
     private Bitmap ballBitmap;
+    private RectF ballRect = new RectF();
 
     public BallView(Context context) {
         super(context);
@@ -65,6 +67,8 @@ public class BallView extends View {
 
         int cx = paddingLeft + contentWidth / 2;
         int cy = paddingTop + contentHeight / 2;
-        canvas.drawBitmap(ballBitmap, cx, cy, null);
+        int radius = contentWidth / 8;
+        ballRect.set(cx - radius, cy - radius, cx + radius, cy + radius);
+        canvas.drawBitmap(ballBitmap, null, ballRect, null);
     }
 }
