@@ -18,6 +18,7 @@ public class GameView extends View {
     private Paint paint, facePaint, outlinePaint;
     private Rect rect;
     private RectF ovalRect; // float 값 저장하는 Rect
+    private int smileyDepth;
 
     public GameView(Context context) {
         super(context);
@@ -74,17 +75,19 @@ public class GameView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        smileyDepth = 0;
         canvas.drawRect(rect, paint);
         drawSmiley(canvas, rect.left, rect.top, rect.width(), rect.height());
     }
 
     private void drawSmiley(Canvas canvas, float left, float top, float width, float height){
+        Log.d(TAG, "smileyDepth" + smileyDepth++);
         canvas.save();
         canvas.translate(left, top);
         canvas.scale(width / 100f, height / 100f);
 
         canvas.drawOval(0, 0, 100, 100, facePaint);
-        if(canvas.getSaveCount() <= 3){
+        if(smileyDepth <= 2){
             drawSmiley(canvas, 23, 33, 14, 14);
             drawSmiley(canvas, 63, 33, 14, 14);
         }
@@ -93,7 +96,7 @@ public class GameView extends View {
         canvas.drawArc(20, 20, 80, 80, 30, 120, false, outlinePaint);
         canvas.restore();
 
-        Log.d(TAG, "saveCount=" + canvas.getSaveCount());
+        --smileyDepth;
     }
 
     private void drawSmiley(Canvas canvas){
