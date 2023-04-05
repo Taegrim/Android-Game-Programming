@@ -1,7 +1,10 @@
 package kr.ac.tukorea.sgp.s2018182024.morecontrols;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -16,6 +19,7 @@ import android.view.View;
 public class BallView extends View {
     private static final String TAG = BallView.class.getSimpleName();
     private Paint paint = new Paint();
+    private Bitmap ballBitmap;
 
     public BallView(Context context) {
         super(context);
@@ -37,6 +41,9 @@ public class BallView extends View {
         paint.setStrokeWidth(5);
         paint.setTextSize(100);
         paint.setColor(Color.BLUE);
+
+        Resources res = getResources();
+        ballBitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);
     }
 
     @Override
@@ -55,5 +62,9 @@ public class BallView extends View {
 
         canvas.drawRect(paddingLeft, paddingTop, paddingLeft + contentWidth, paddingTop +contentHeight, paint);
         canvas.drawText("Hello Custon View!", paddingLeft + 100, paddingTop + 100, paint);
+
+        int cx = paddingLeft + contentWidth / 2;
+        int cy = paddingTop + contentHeight / 2;
+        canvas.drawBitmap(ballBitmap, cx, cy, null);
     }
 }
