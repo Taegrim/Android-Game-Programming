@@ -52,22 +52,15 @@ public class BallView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        // TODO: consider storing these as member variables to reduce
-        // allocations per draw cycle.
-        int paddingLeft = getPaddingLeft();
-        int paddingTop = getPaddingTop();
-        int paddingRight = getPaddingRight();
-        int paddingBottom = getPaddingBottom();
+        // 화면 폭을 최대 10으로 가정
+        float scale = getWidth() / 10.0f;
+        canvas.scale(scale, scale);
 
-        int contentWidth = getWidth() - paddingLeft - paddingRight;
-        int contentHeight = getHeight() - paddingTop - paddingBottom;
+        float height = getHeight() / scale;
+        float cx = 5.0f;
+        float cy = height / 2.0f;
+        float radius = 1.25f;
 
-        canvas.drawRect(paddingLeft, paddingTop, paddingLeft + contentWidth, paddingTop +contentHeight, paint);
-        canvas.drawText("Hello Custon View!", paddingLeft + 100, paddingTop + 100, paint);
-
-        int cx = paddingLeft + contentWidth / 2;
-        int cy = paddingTop + contentHeight / 2;
-        int radius = contentWidth / 8;
         ballRect.set(cx - radius, cy - radius, cx + radius, cy + radius);
         canvas.drawBitmap(ballBitmap, null, ballRect, null);
     }
