@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -39,6 +40,7 @@ public class GameView extends View {
         init(attrs, defStyle);
     }
 
+    private Handler handler;
     private void init(AttributeSet attrs, int defStyle) {
         Resources res = getResources();
         soccerBitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);
@@ -48,6 +50,7 @@ public class GameView extends View {
         float radius = 1.25f;
         soccerRect.set(cx - radius, cy - radius, cx + radius, cy + radius);
 
+        handler = new Handler();
         advanceFrame();
     }
 
@@ -59,12 +62,14 @@ public class GameView extends View {
     }
 
     private void advanceFrame(){
-        postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 update();
                 invalidate();
-                advanceFrame();
+                if(isShown()){
+                    advanceFrame();
+                }
             }
         }, 16);
     }
