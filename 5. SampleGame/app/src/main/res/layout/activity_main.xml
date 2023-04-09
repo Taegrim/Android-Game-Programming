@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
+<kr.ac.tukorea.sgp.s2018182024.samplegame.GameView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="Hello World!"
-    android:gravity="center"
     tools:context=".MainActivity">
 
-</TextView>
+</kr.ac.tukorea.sgp.s2018182024.samplegame.GameView>
