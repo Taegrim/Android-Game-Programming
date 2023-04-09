@@ -12,6 +12,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -46,6 +47,8 @@ public class GameView extends View {
         float cy = 7.0f;
         float radius = 1.25f;
         soccerRect.set(cx - radius, cy - radius, cx + radius, cy + radius);
+
+        advanceFrame();
     }
 
     @Override
@@ -54,6 +57,23 @@ public class GameView extends View {
 
         scale = w / 10.f;
     }
+
+    private void advanceFrame(){
+        postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                update();
+                invalidate();
+                advanceFrame();
+            }
+        }, 16);
+    }
+
+    private void update() {
+        soccerRect.offset(0.01f, 0.01f);
+        Log.d(TAG, "soccerRect = " + soccerRect);
+    }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
