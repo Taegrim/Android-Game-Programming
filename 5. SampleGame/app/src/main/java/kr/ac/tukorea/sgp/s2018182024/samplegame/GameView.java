@@ -49,7 +49,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
         float radius = 1.25f;
         soccerRect.set(cx - radius, cy - radius, cx + radius, cy + radius);
 
-        advanceFrame();
+        Choreographer.getInstance().postFrameCallback(this);
     }
 
     @Override
@@ -59,16 +59,12 @@ public class GameView extends View implements Choreographer.FrameCallback {
         scale = w / 10.f;
     }
 
-    private void advanceFrame(){
-        Choreographer.getInstance().postFrameCallback(this);
-    }
-
     @Override
     public void doFrame(long l) {
         update();
         invalidate();
         if(isShown()){
-            advanceFrame();
+            Choreographer.getInstance().postFrameCallback(this);
         }
     }
 
