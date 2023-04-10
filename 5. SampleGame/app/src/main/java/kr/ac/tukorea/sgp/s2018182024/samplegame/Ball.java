@@ -1,6 +1,7 @@
 package kr.ac.tukorea.sgp.s2018182024.samplegame;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
@@ -9,14 +10,14 @@ public class Ball implements GameObject {
     private RectF rect = new RectF();
     private float dx, dy;
 
-    public Ball(float dx, float dy){
+    public Ball(float dx, float dy) {
         this.dx = dx;
         this.dy = dy;
         rect.set(0, 0, 2.5f, 2.5f);
-    }
 
-    public static void setBitmap(Bitmap bitmap) {
-        Ball.bitmap = bitmap;
+        if(bitmap == null){
+            bitmap = BitmapFactory.decodeResource(GameView.res, R.mipmap.soccer_ball_240);
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package kr.ac.tukorea.sgp.s2018182024.samplegame;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
@@ -11,27 +12,27 @@ public class Fighter implements GameObject {
     private float x, y;
     private float angle;
 
-    public Fighter(){
+    public Fighter() {
         x = 5.0f;
         y = 13.25f;
         rect.set(x - RADIUS, y - RADIUS, x + RADIUS, y + RADIUS);
+
+        if(bitmap == null){
+            bitmap = BitmapFactory.decodeResource(GameView.res, R.mipmap.plane_240);
+        }
     }
 
     @Override
-    public void update(){
+    public void update() {
 
     }
 
     @Override
-    public void draw(Canvas canvas){
+    public void draw(Canvas canvas) {
         canvas.save();
         canvas.rotate(angle, x, y);
         canvas.drawBitmap(bitmap, null, rect, null);
         canvas.restore();
-    }
-
-    public static void setBitmap(Bitmap bitmap) {
-        Fighter.bitmap = bitmap;
     }
 
     public void setPosition(float x, float y){
