@@ -24,7 +24,7 @@ public class Ball implements GameObject {
     public void update() {
         rect.offset(dx * BaseScene.frameTime, dy * BaseScene.frameTime);
         if(dx > 0){
-            if(rect.right > 10.0f){
+            if(rect.right > 9.0f){
                 dx = -dx;
             }
         }
@@ -35,7 +35,7 @@ public class Ball implements GameObject {
         }
 
         if(dy > 0){
-            if(rect.bottom > 15.0f){
+            if(rect.bottom > 16.0f){
                 dy = -dy;
             }
         }

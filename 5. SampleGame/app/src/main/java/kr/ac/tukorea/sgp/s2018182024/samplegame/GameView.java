@@ -17,7 +17,11 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();
     public static Resources res;
     public static float scale;
+    public static float gameWidth = 9.0f;
+    public static float gameHeight = 16.0f;
+    public static int xOffset, yOffset;
     protected Paint fpsPaint = new Paint();
+    protected Paint borderPaint = new Paint();
 
     public GameView(Context context) {
         super(context);
@@ -40,13 +44,30 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
         fpsPaint.setColor(Color.BLUE);
         fpsPaint.setTextSize(100f);
+
+        borderPaint.setColor(Color.RED);
+        borderPaint.setStyle(Paint.Style.STROKE);
+        borderPaint.setStrokeWidth(0.1f);
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldW, int oldH) {
         super.onSizeChanged(w, h, oldW, oldH);
 
-        scale = w / 10.f;
+        float viewRatio = (float)w / (float)h;
+        float gameRatio = gameWidth / gameHeight;
+
+        // 화면 비율이 게임 비율 보다 크면 (폰이 가로로 넓으면)
+        if(viewRatio > gameRatio){
+            xOffset = (int) ((w - h * gameRatio) / 2);
+            yOffset = 0;
+            scale = h / gameHeight;
+        }
+        else{
+            xOffset = 0;
+            yOffset = (int) ((h - w * gameRatio) / 2);
+            scale = w / gameWidth;
+        }
     }
 
     private long previousTime;
@@ -68,12 +89,20 @@ public class GameView extends View implements Choreographer.FrameCallback {
         super.onDraw(canvas);
 
         canvas.save();
+        canvas.translate(xOffset, yOffset);
         canvas.scale(scale, scale);
-        BaseScene.getTopScene().draw(canvas);
+        BaseScene scene = BaseScene.getTopScene();
+        if(scene != null){
+            scene.draw(canvas);
+        }
+
+        canvas.drawRect(0, 0, gameWidth, gameHeight, borderPaint);
         canvas.restore();
 
-        int fps = (int) (1.0f / BaseScene.frameTime);
-        canvas.drawText("FPS : " + fps, 50f, 100f, fpsPaint);
+        if(BaseScene.frameTime > 0) {
+            int fps = (int) (1.0f / BaseScene.frameTime);
+            canvas.drawText("FPS : " + fps, 50f, 100f, fpsPaint);
+        }
     }
 
     @Override

@@ -16,7 +16,7 @@ public class Fighter implements GameObject {
     private float angle;
 
     public Fighter() {
-        x = tx = 5.0f;
+        x = tx = 4.5f;
         y = ty = 13.25f;
         dx = dy = 0;
         rect.set(x - RADIUS, y - RADIUS, x + RADIUS, y + RADIUS);
