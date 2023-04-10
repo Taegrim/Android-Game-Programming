@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.Choreographer;
+import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -18,7 +19,9 @@ import java.util.Random;
 public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();
     private ArrayList<Ball> balls = new ArrayList<>();
+    private Fighter fighter = new Fighter();
     private float scale;
+
 
     public GameView(Context context) {
         super(context);
@@ -39,6 +42,8 @@ public class GameView extends View implements Choreographer.FrameCallback {
         Resources res = getResources();
         Bitmap soccerBitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);
         Ball.setBitmap(soccerBitmap);
+        Bitmap fighterBitmap = BitmapFactory.decodeResource(res, R.mipmap.plane_240);
+        Fighter.setBitmap(fighterBitmap);
 
         Random r = new Random();
         for(int i = 0; i < 10; ++i){
@@ -70,6 +75,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
         for(Ball ball : balls){
             ball.update();
         }
+        fighter.update();
     }
 
 
@@ -81,5 +87,18 @@ public class GameView extends View implements Choreographer.FrameCallback {
         for(Ball ball : balls){
             ball.draw(canvas);
         }
+        fighter.draw(canvas);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int action = event.getAction();
+        if(MotionEvent.ACTION_DOWN == action){
+            float x = (float) event.getX() / scale;
+            float y = (float) event.getY() / scale;
+            fighter.setPosition(x, y);
+        }
+
+        return super.onTouchEvent(event);
     }
 }
