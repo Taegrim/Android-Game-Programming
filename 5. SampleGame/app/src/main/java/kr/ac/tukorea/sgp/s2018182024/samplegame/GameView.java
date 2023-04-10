@@ -18,7 +18,8 @@ import java.util.Random;
  */
 public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();
-    private ArrayList<Ball> balls = new ArrayList<>();
+    private static final int MAX_BALLS = 10;
+    private ArrayList<GameObject> objects = new ArrayList<>();
     private Fighter fighter = new Fighter();
     private float scale;
 
@@ -46,11 +47,12 @@ public class GameView extends View implements Choreographer.FrameCallback {
         Fighter.setBitmap(fighterBitmap);
 
         Random r = new Random();
-        for(int i = 0; i < 10; ++i){
+        for(int i = 0; i < MAX_BALLS; ++i){
             float dx = r.nextFloat() * 0.05f + 0.03f;
             float dy = r.nextFloat() * 0.05f + 0.03f;
-            balls.add(new Ball(dx, dy));
+            objects.add(new Ball(dx, dy));
         }
+        objects.add(fighter);
 
         Choreographer.getInstance().postFrameCallback(this);
     }
@@ -72,10 +74,9 @@ public class GameView extends View implements Choreographer.FrameCallback {
     }
 
     private void update() {
-        for(Ball ball : balls){
-            ball.update();
+        for(GameObject object : objects){
+            object.update();
         }
-        fighter.update();
     }
 
 
@@ -84,10 +85,9 @@ public class GameView extends View implements Choreographer.FrameCallback {
         super.onDraw(canvas);
 
         canvas.scale(scale, scale);
-        for(Ball ball : balls){
-            ball.draw(canvas);
+        for(GameObject object : objects){
+            object.draw(canvas);
         }
-        fighter.draw(canvas);
     }
 
     @Override
