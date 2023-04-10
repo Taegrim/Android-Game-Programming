@@ -17,7 +17,7 @@ public class Sprite implements GameObject {
         if(resId != 0){
             setBitmapResource(resId);
         }
-
+        fixRect();
     }
 
     public void setBitmapResource(int resId) {
