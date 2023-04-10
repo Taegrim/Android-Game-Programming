@@ -3,6 +3,8 @@ package kr.ac.tukorea.sgp.s2018182024.samplegame;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.Choreographer;
 import android.view.MotionEvent;
@@ -15,7 +17,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();
     public static Resources res;
     public static float scale;
-
+    protected Paint fpsPaint = new Paint();
 
     public GameView(Context context) {
         super(context);
@@ -35,6 +37,9 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private void init(AttributeSet attrs, int defStyle) {
         GameView.res = getResources();
         Choreographer.getInstance().postFrameCallback(this);
+
+        fpsPaint.setColor(Color.BLUE);
+        fpsPaint.setTextSize(100f);
     }
 
     @Override
@@ -62,8 +67,13 @@ public class GameView extends View implements Choreographer.FrameCallback {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        canvas.save();
         canvas.scale(scale, scale);
         BaseScene.getTopScene().draw(canvas);
+        canvas.restore();
+
+        int fps = (int) (1.0f / BaseScene.frameTime);
+        canvas.drawText("FPS : " + fps, 50f, 100f, fpsPaint);
     }
 
     @Override
