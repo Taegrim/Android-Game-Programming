@@ -5,13 +5,16 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 
 public class Fighter {
+    private static final float RADIUS = 1.25f;
     private static Bitmap bitmap;
     private RectF rect = new RectF();
+    private float x, y;
+    private float angle;
 
     public Fighter(){
-        float x = 5.0f;
-        float y = 12.0f;
-        setPosition(x, y);
+        x = 5.0f;
+        y = 13.25f;
+        rect.set(x - RADIUS, y - RADIUS, x + RADIUS, y + RADIUS);
     }
 
     public void update(){
@@ -19,7 +22,10 @@ public class Fighter {
     }
 
     public void draw(Canvas canvas){
+        canvas.save();
+        canvas.rotate(angle, x, y);
         canvas.drawBitmap(bitmap, null, rect, null);
+        canvas.restore();
     }
 
     public static void setBitmap(Bitmap bitmap) {
@@ -27,7 +33,12 @@ public class Fighter {
     }
 
     public void setPosition(float x, float y){
-        float r = 1.25f;
-        rect.set(x - r, y - r, x + r, y + r);
+        float dx = x - this.x;
+        float dy = y - this.y;
+        double radian = Math.atan2(dy, dx);
+        angle = (float) Math.toDegrees(radian) + 90;
+        rect.set(x - RADIUS, y - RADIUS, x + RADIUS, y + RADIUS);
+        this.x = x;
+        this.y = y;
     }
 }
