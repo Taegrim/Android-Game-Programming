@@ -16,10 +16,6 @@ import android.view.View;
 public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();
     public static Resources res;
-    public static float scale;
-    public static float gameWidth = 9.0f;
-    public static float gameHeight = 16.0f;
-    public static int xOffset, yOffset;
     protected Paint fpsPaint = new Paint();
     protected Paint borderPaint = new Paint();
 
@@ -55,18 +51,18 @@ public class GameView extends View implements Choreographer.FrameCallback {
         super.onSizeChanged(w, h, oldW, oldH);
 
         float viewRatio = (float)w / (float)h;
-        float gameRatio = gameWidth / gameHeight;
+        float gameRatio = Metrics.gameWidth / Metrics.gameHeight;
 
         // 화면 비율이 게임 비율 보다 크면 (폰이 가로로 넓으면)
         if(viewRatio > gameRatio){
-            xOffset = (int) ((w - h * gameRatio) / 2);
-            yOffset = 0;
-            scale = h / gameHeight;
+            Metrics.xOffset = (int) ((w - h * gameRatio) / 2);
+            Metrics.yOffset = 0;
+            Metrics.scale = h / Metrics.gameHeight;
         }
         else{
-            xOffset = 0;
-            yOffset = (int) ((h - w * gameRatio) / 2);
-            scale = w / gameWidth;
+            Metrics.xOffset = 0;
+            Metrics.yOffset = (int) ((h - w * gameRatio) / 2);
+            Metrics.scale = w / Metrics.gameWidth;
         }
     }
 
@@ -89,17 +85,19 @@ public class GameView extends View implements Choreographer.FrameCallback {
         super.onDraw(canvas);
 
         canvas.save();
-        canvas.translate(xOffset, yOffset);
-        canvas.scale(scale, scale);
+        canvas.translate(Metrics.xOffset, Metrics.yOffset);
+        canvas.scale(Metrics.scale, Metrics.scale);
         BaseScene scene = BaseScene.getTopScene();
         if(scene != null){
             scene.draw(canvas);
         }
 
-        canvas.drawRect(0, 0, gameWidth, gameHeight, borderPaint);
+        if(BuildConfig.DEBUG){
+            canvas.drawRect(0, 0, Metrics.gameWidth, Metrics.gameHeight, borderPaint);
+        }
         canvas.restore();
 
-        if(BaseScene.frameTime > 0) {
+        if(BuildConfig.DEBUG && BaseScene.frameTime > 0) {
             int fps = (int) (1.0f / BaseScene.frameTime);
             canvas.drawText("FPS : " + fps, 50f, 100f, fpsPaint);
         }

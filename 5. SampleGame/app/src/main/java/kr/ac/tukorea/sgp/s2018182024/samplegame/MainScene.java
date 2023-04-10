@@ -9,6 +9,7 @@ public class MainScene extends BaseScene {
     private Fighter fighter = new Fighter();
 
     public MainScene() {
+        Metrics.setGameSize(10.0f, 10.0f);
         Random r = new Random();
         for(int i = 0; i < MAX_BALLS; ++i){
             float x = r.nextFloat() * 3.f + 1.f;
@@ -21,13 +22,13 @@ public class MainScene extends BaseScene {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        float scale = GameView.scale;
+        float scale = Metrics.scale;
         int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
-                float x = (float) event.getX() / scale;
-                float y = (float) event.getY() / scale;
+                float x = Metrics.toGameX(event.getX());
+                float y = Metrics.toGameY(event.getY());
                 fighter.setTargetPosition(x, y);
                 return true;
         }

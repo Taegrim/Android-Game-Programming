@@ -8,22 +8,22 @@ import android.graphics.RectF;
 public class Fighter implements GameObject {
     private static final float RADIUS = 1.25f;
     private static final float SPEED = 10.0f;
-    private static Bitmap bitmap;
+    private Bitmap bitmap, targetBitmap;
     private RectF rect = new RectF();
+    private RectF targetRect = new RectF();
     private float x, y;     // 현재 위치
     private float tx, ty;   // 움직여야 할 위치
     private float dx, dy;   // 1초당 움직여야 할 양
     private float angle;
 
     public Fighter() {
-        x = tx = 4.5f;
-        y = ty = 13.25f;
+        x = tx = Metrics.gameWidth / 2;
+        y = ty = Metrics.gameHeight - 4.0f;
         dx = dy = 0;
         rect.set(x - RADIUS, y - RADIUS, x + RADIUS, y + RADIUS);
 
-        if(bitmap == null){
-            bitmap = BitmapFactory.decodeResource(GameView.res, R.mipmap.plane_240);
-        }
+        bitmap = BitmapFactory.decodeResource(GameView.res, R.mipmap.plane_240);
+        targetBitmap = BitmapFactory.decodeResource(GameView.res, R.mipmap.target);
     }
 
     @Override
@@ -48,6 +48,11 @@ public class Fighter implements GameObject {
         canvas.rotate(angle, x, y);
         canvas.drawBitmap(bitmap, null, rect, null);
         canvas.restore();
+        if(dx != 0 || dy != 0){
+            float r = 1.0f;
+            targetRect.set(tx - r, ty - r, tx + r, ty + r);
+            canvas.drawBitmap(targetBitmap, null, targetRect, null);
+        }
     }
 
     public void setTargetPosition(float tx, float ty) {
