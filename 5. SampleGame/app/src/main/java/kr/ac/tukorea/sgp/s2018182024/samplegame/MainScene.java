@@ -9,7 +9,7 @@ public class MainScene extends BaseScene {
     private Fighter fighter = new Fighter();
 
     public MainScene() {
-        Metrics.setGameSize(10.0f, 10.0f);
+        //Metrics.setGameSize(10.0f, 10.0f);
         Random r = new Random();
         for(int i = 0; i < MAX_BALLS; ++i){
             float x = r.nextFloat() * 3.f + 1.f;

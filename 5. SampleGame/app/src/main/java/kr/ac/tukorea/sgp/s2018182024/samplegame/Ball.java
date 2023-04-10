@@ -5,19 +5,15 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
-public class Ball implements GameObject {
-    private static Bitmap bitmap;
-    private RectF rect = new RectF();
+public class Ball extends Sprite {
     private float dx, dy;
 
     public Ball(float dx, float dy) {
+        super(R.mipmap.soccer_ball_240, 2.0f, 2.0f, 2.5f, 2.5f);
         this.dx = dx;
         this.dy = dy;
-        rect.set(0, 0, 2.5f, 2.5f);
 
-        if(bitmap == null){
-            bitmap = BitmapFactory.decodeResource(GameView.res, R.mipmap.soccer_ball_240);
-        }
+        fixRect();
     }
 
     @Override
@@ -44,10 +40,5 @@ public class Ball implements GameObject {
                 dy = -dy;
             }
         }
-    }
-
-    @Override
-    public void draw(Canvas canvas){
-        canvas.drawBitmap(bitmap, null, rect, null);
     }
 }
