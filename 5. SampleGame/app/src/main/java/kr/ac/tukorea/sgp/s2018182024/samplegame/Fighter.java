@@ -35,7 +35,7 @@ public class Fighter implements GameObject {
         canvas.restore();
     }
 
-    public void setPosition(float x, float y){
+    public void setPosition(float x, float y) {
         float dx = x - this.x;
         float dy = y - this.y;
         double radian = Math.atan2(dy, dx);
@@ -43,5 +43,9 @@ public class Fighter implements GameObject {
         rect.set(x - RADIUS, y - RADIUS, x + RADIUS, y + RADIUS);
         this.x = x;
         this.y = y;
+    }
+
+    public void setTargetPosition(float x, float y) {
+
     }
 }

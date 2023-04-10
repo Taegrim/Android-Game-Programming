@@ -22,7 +22,7 @@ public class Ball implements GameObject {
 
     @Override
     public void update() {
-        rect.offset(dx, dy);
+        rect.offset(dx * BaseScene.frameTime, dy * BaseScene.frameTime);
         if(dx > 0){
             if(rect.right > 10.0f){
                 dx = -dx;

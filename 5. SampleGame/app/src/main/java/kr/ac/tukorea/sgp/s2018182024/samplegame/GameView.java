@@ -44,17 +44,18 @@ public class GameView extends View implements Choreographer.FrameCallback {
         scale = w / 10.f;
     }
 
+    private long previousTime;
     @Override
-    public void doFrame(long l) {
-        update();
+    public void doFrame(long currentTime) {
+        if(previousTime != 0){
+            long timeElapsed = currentTime - previousTime;
+            BaseScene.getTopScene().update(timeElapsed);
+        }
+        previousTime = currentTime;
         invalidate();
         if(isShown()){
             Choreographer.getInstance().postFrameCallback(this);
         }
-    }
-
-    private void update() {
-        BaseScene.getTopScene().update();
     }
 
     @Override

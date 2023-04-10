@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class BaseScene {
     private static ArrayList<BaseScene> stack = new ArrayList<>();
     private ArrayList<GameObject> objects = new ArrayList<>();
+    public static float frameTime;
 
     public static BaseScene getTopScene() {
         return stack.get(stack.size() - 1);
@@ -23,7 +24,8 @@ public class BaseScene {
         return objects.size();
     }
 
-    public void update() {
+    public void update(long timeElapsed) {
+        frameTime = timeElapsed / 1_000_000_000f;
         for(GameObject object : objects){
             object.update();
         }
