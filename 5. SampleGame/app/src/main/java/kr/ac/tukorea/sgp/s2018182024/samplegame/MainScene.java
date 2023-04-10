@@ -26,6 +26,7 @@ public class MainScene extends BaseScene {
         int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                fighter.fire();
             case MotionEvent.ACTION_MOVE:
                 float x = Metrics.toGameX(event.getX());
                 float y = Metrics.toGameY(event.getY());

@@ -63,4 +63,9 @@ public class Fighter extends Sprite {
         // 원의 매개변수 방정식 이용하여 dx, dy 구하기
         angle = (float) Math.toDegrees(radian) + 90;
     }
+
+    public void fire() {
+        Bullet bullet = new Bullet(x, y, angle);
+        BaseScene.getTopScene().addObject(bullet);
+    }
 }
