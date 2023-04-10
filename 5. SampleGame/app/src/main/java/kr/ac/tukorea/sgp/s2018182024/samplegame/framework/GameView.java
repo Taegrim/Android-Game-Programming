@@ -1,4 +1,4 @@
-package kr.ac.tukorea.sgp.s2018182024.samplegame;
+package kr.ac.tukorea.sgp.s2018182024.samplegame.framework;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -9,6 +9,8 @@ import android.util.AttributeSet;
 import android.view.Choreographer;
 import android.view.MotionEvent;
 import android.view.View;
+
+import kr.ac.tukorea.sgp.s2018182024.samplegame.BuildConfig;
 
 /**
  * TODO: document your custom view class.

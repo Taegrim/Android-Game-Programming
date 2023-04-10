@@ -1,6 +1,5 @@
-package kr.ac.tukorea.sgp.s2018182024.samplegame;
+package kr.ac.tukorea.sgp.s2018182024.samplegame.framework;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 

@@ -1,18 +1,25 @@
-package kr.ac.tukorea.sgp.s2018182024.samplegame;
+package kr.ac.tukorea.sgp.s2018182024.samplegame.game;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.RectF;
+
+import kr.ac.tukorea.sgp.s2018182024.samplegame.framework.BaseScene;
+import kr.ac.tukorea.sgp.s2018182024.samplegame.framework.BitmapPool;
+import kr.ac.tukorea.sgp.s2018182024.samplegame.framework.Metrics;
+import kr.ac.tukorea.sgp.s2018182024.samplegame.R;
+import kr.ac.tukorea.sgp.s2018182024.samplegame.framework.Sprite;
 
 public class Fighter extends Sprite {
     private static final float RADIUS = 1.25f;
     private static final float SPEED = 10.0f;
+    private static final float FIRE_INTERVAL = 1.0f;
     private Bitmap targetBitmap;
     private RectF targetRect = new RectF();
     private float tx, ty;   // 움직여야 할 위치
     private float dx, dy;   // 1초당 움직여야 할 양
     private float angle;
+    private float accumulatedTime;
 
     public Fighter() {
         super(R.mipmap.plane_240, Metrics.gameWidth / 2, Metrics.gameHeight - 4.0f, RADIUS * 2, RADIUS * 2);
@@ -37,6 +44,7 @@ public class Fighter extends Sprite {
             dy = 0;
         }
         fixRect();
+        checkFire();
     }
 
     @Override
@@ -62,6 +70,15 @@ public class Fighter extends Sprite {
         this.dy = (float) (SPEED * Math.sin(radian));
         // 원의 매개변수 방정식 이용하여 dx, dy 구하기
         angle = (float) Math.toDegrees(radian) + 90;
+    }
+
+    private void checkFire() {
+        accumulatedTime += BaseScene.frameTime;
+        if(accumulatedTime < FIRE_INTERVAL){
+            return;
+        }
+        accumulatedTime -= FIRE_INTERVAL;
+        fire();
     }
 
     public void fire() {

@@ -1,9 +1,9 @@
-package kr.ac.tukorea.sgp.s2018182024.samplegame;
+package kr.ac.tukorea.sgp.s2018182024.samplegame.game;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.RectF;
+import kr.ac.tukorea.sgp.s2018182024.samplegame.framework.BaseScene;
+import kr.ac.tukorea.sgp.s2018182024.samplegame.framework.Metrics;
+import kr.ac.tukorea.sgp.s2018182024.samplegame.R;
+import kr.ac.tukorea.sgp.s2018182024.samplegame.framework.Sprite;
 
 public class Ball extends Sprite {
     private float dx, dy;

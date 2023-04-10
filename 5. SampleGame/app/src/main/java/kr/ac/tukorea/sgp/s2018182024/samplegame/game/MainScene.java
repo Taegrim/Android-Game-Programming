@@ -1,8 +1,11 @@
-package kr.ac.tukorea.sgp.s2018182024.samplegame;
+package kr.ac.tukorea.sgp.s2018182024.samplegame.game;
 
 import android.view.MotionEvent;
 
 import java.util.Random;
+
+import kr.ac.tukorea.sgp.s2018182024.samplegame.framework.BaseScene;
+import kr.ac.tukorea.sgp.s2018182024.samplegame.framework.Metrics;
 
 public class MainScene extends BaseScene {
     private static final int MAX_BALLS = 10;
@@ -26,7 +29,7 @@ public class MainScene extends BaseScene {
         int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                fighter.fire();
+            //    fighter.fire();
             case MotionEvent.ACTION_MOVE:
                 float x = Metrics.toGameX(event.getX());
                 float y = Metrics.toGameY(event.getY());

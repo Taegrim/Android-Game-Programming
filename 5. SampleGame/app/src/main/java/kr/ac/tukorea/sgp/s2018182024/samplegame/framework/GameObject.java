@@ -1,4 +1,4 @@
-package kr.ac.tukorea.sgp.s2018182024.samplegame;
+package kr.ac.tukorea.sgp.s2018182024.samplegame.framework;
 
 import android.graphics.Canvas;
 

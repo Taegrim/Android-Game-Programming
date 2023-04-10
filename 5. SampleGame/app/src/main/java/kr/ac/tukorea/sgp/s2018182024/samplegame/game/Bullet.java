@@ -1,10 +1,13 @@
-package kr.ac.tukorea.sgp.s2018182024.samplegame;
+package kr.ac.tukorea.sgp.s2018182024.samplegame.game;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-public class Bullet implements GameObject{
+import kr.ac.tukorea.sgp.s2018182024.samplegame.framework.BaseScene;
+import kr.ac.tukorea.sgp.s2018182024.samplegame.framework.GameObject;
+
+public class Bullet implements GameObject {
     protected float x, y, dx, dy, ex, ey;   // 위치, 움직일 x, y, 선의 끝 x, y
     protected static float SPEED = 20.f;
     protected static float LENGTH = 2.0f;
