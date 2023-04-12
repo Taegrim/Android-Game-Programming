@@ -1,13 +1,15 @@
 package kr.ac.tukorea.sgp.s2018182024.dragonflight.game;
 
 import android.graphics.Paint;
+import android.graphics.RectF;
 
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.R;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BaseScene;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.CollisionObject;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Metrics;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Sprite;
 
-public class Bullet extends Sprite {
+public class Bullet extends Sprite implements CollisionObject {
     private static final float BULLET_WIDTH = 28 * Metrics.bitmapRatio;
     private static final float BULLET_HEIGHT = 40 * Metrics.bitmapRatio;
     private static float SPEED = 20.f;
@@ -28,5 +30,10 @@ public class Bullet extends Sprite {
         if(rect.bottom < 0){
             BaseScene.getTopScene().removeObject(this);
         }
+    }
+
+    @Override
+    public RectF getCollisionRect() {
+        return rect;
     }
 }

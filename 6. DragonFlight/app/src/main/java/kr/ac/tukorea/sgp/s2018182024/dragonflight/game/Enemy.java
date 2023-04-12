@@ -1,14 +1,18 @@
 package kr.ac.tukorea.sgp.s2018182024.dragonflight.game;
 
+import android.graphics.RectF;
+
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.R;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BaseScene;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.CollisionObject;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Metrics;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Sprite;
 
-public class Enemy extends Sprite {
+public class Enemy extends Sprite implements CollisionObject {
     private static final float SIZE = Metrics.gameWidth / 5;
     private static final int SPEED = 2;
     private int hp;
+    private RectF collisionRect = new RectF();
 
     private static final int[] resId = {
             R.mipmap.f_01_01, R.mipmap.f_02_01, R.mipmap.f_03_01, R.mipmap.f_04_01, R.mipmap.f_05_01,
@@ -29,5 +33,12 @@ public class Enemy extends Sprite {
         if(rect.top > Metrics.gameHeight){
             BaseScene.getTopScene().removeObject(this);
         }
+        collisionRect.set(rect);
+        collisionRect.inset(0.1f, 0.1f);
+    }
+
+    @Override
+    public RectF getCollisionRect() {
+        return collisionRect;
     }
 }
