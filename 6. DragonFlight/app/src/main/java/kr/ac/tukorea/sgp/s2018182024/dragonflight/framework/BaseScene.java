@@ -19,6 +19,10 @@ public class BaseScene {
         return stack.get(top);
     }
 
+    public int getObjectCount(){
+        return objects.size();
+    }
+
     public int pushScene() {
         stack.add(this);
         return stack.size();
@@ -29,6 +33,16 @@ public class BaseScene {
             @Override
             public void run() {
                 objects.add(object);
+            }
+        });
+        return objects.size();
+    }
+
+    public int removeObject(GameObject object){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                objects.remove(object);
             }
         });
         return objects.size();
