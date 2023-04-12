@@ -16,7 +16,7 @@ public class EnemyGenerator implements GameObject {
     private void generate() {
         Log.v(TAG, "Generate!");
         Random r = new Random();
-        BaseScene scene = BaseScene.getTopScene();
+        MainScene scene = (MainScene) BaseScene.getTopScene();
         for(int i = 0; i < 5; ++i){
             scene.addObject(new Enemy(i, i));
         }

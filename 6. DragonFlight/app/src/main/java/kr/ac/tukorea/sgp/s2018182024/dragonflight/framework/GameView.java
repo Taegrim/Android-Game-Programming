@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.BuildConfig;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.game.EnemyGenerator;
 
 /**
  * TODO: document your custom view class.
@@ -19,8 +18,9 @@ import kr.ac.tukorea.sgp.s2018182024.dragonflight.game.EnemyGenerator;
 public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();
     public static Resources res;
-    protected Paint fpsPaint = new Paint();
-    protected Paint borderPaint = new Paint();
+    protected Paint fpsPaint;
+    protected Paint borderPaint;
+    protected boolean running;
 
     public GameView(Context context) {
         super(context);
@@ -39,14 +39,20 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
     private void init(AttributeSet attrs, int defStyle) {
         GameView.res = getResources();
+        running = true;
+
         Choreographer.getInstance().postFrameCallback(this);
 
-        fpsPaint.setColor(Color.BLUE);
-        fpsPaint.setTextSize(100f);
+        if(BuildConfig.DEBUG) {
+            fpsPaint = new Paint();
+            fpsPaint.setColor(Color.BLUE);
+            fpsPaint.setTextSize(100f);
 
-        borderPaint.setColor(Color.RED);
-        borderPaint.setStyle(Paint.Style.STROKE);
-        borderPaint.setStrokeWidth(0.1f);
+            borderPaint = new Paint();
+            borderPaint.setColor(Color.RED);
+            borderPaint.setStyle(Paint.Style.STROKE);
+            borderPaint.setStrokeWidth(0.1f);
+        }
     }
 
     @Override
@@ -78,7 +84,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
         }
         previousTime = currentTime;
         invalidate();
-        if(isShown()){
+        if(running){
             Choreographer.getInstance().postFrameCallback(this);
         }
     }
@@ -114,5 +120,18 @@ public class GameView extends View implements Choreographer.FrameCallback {
             return true;
         }
         return super.onTouchEvent(event);
+    }
+
+    public void pauseGame(){
+        running = false;
+    }
+
+    public void resumeGame(){
+        if(running){
+            return;
+        }
+        running = true;
+        previousTime = 0;
+        Choreographer.getInstance().postFrameCallback(this);
     }
 }

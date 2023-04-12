@@ -19,12 +19,24 @@ public class BaseScene {
         return stack.get(top);
     }
 
+    public static void popAllScene() {
+        while (!stack.isEmpty()) {
+            BaseScene scene = getTopScene();
+            scene.popScene();
+        }
+    }
+
     public int getObjectCount() {
         return objects.size();
     }
 
     public int pushScene() {
         stack.add(this);
+        return stack.size();
+    }
+
+    public int popScene() {
+        stack.remove(this);
         return stack.size();
     }
 
