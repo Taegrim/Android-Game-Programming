@@ -12,13 +12,20 @@ public class EnemyGenerator implements GameObject {
     private static final String TAG = EnemyGenerator.class.getSimpleName();
     private static final float GEN_INTERVAL = 5.0f;
     private float time;
+    private int wave;
 
     private void generate() {
+        ++wave;
         Log.v(TAG, "Generate!");
         Random r = new Random();
         MainScene scene = (MainScene) BaseScene.getTopScene();
         for(int i = 0; i < 5; ++i){
-            scene.addObject(new Enemy(i, i));
+            int level = (wave + 5) / 5 - r.nextInt(3);
+            if(level < 0)
+                level = 0;
+            if(level > Enemy.MAX_LEVEL)
+                level = Enemy.MAX_LEVEL;
+            scene.addObject(new Enemy(i, level));
         }
     }
 

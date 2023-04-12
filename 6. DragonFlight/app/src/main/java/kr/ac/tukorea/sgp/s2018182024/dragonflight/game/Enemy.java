@@ -13,11 +13,11 @@ public class Enemy extends Sprite implements CollisionObject {
     private static final int SPEED = 2;
     private int hp;
     private RectF collisionRect = new RectF();
-
     private static final int[] resId = {
             R.mipmap.f_01_01, R.mipmap.f_02_01, R.mipmap.f_03_01, R.mipmap.f_04_01, R.mipmap.f_05_01,
             R.mipmap.f_06_01, R.mipmap.f_07_01, R.mipmap.f_08_01, R.mipmap.f_09_01, R.mipmap.f_10_01
     };
+    public static final int MAX_LEVEL = resId.length - 1;
 
     public Enemy(int index, int level) {
         super(resId[level], (Metrics.gameWidth / 10) * (2 * index + 1), -(SIZE / 2), SIZE, SIZE);
