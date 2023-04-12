@@ -20,12 +20,12 @@ public class EnemyGenerator implements GameObject {
         Random r = new Random();
         MainScene scene = (MainScene) BaseScene.getTopScene();
         for(int i = 0; i < 5; ++i){
-            int level = (wave + 5) / 5 - r.nextInt(3);
-            if(level < 0)
-                level = 0;
-            if(level > Enemy.MAX_LEVEL)
-                level = Enemy.MAX_LEVEL;
-            scene.addObject(new Enemy(i, level));
+            int hp = (wave + 5) / 5 - r.nextInt(3);
+            if(hp < 0)
+                hp = 0;
+            if(hp > Enemy.MAX_HP)
+                hp = Enemy.MAX_HP;
+            scene.addObject(new Enemy(i, hp));
         }
     }
 

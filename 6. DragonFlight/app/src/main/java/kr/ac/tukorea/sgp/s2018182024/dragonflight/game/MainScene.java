@@ -4,6 +4,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.BuildConfig;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.R;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.AnimationSprite;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BaseScene;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.CollisionChecker;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.GameObject;
