@@ -19,7 +19,7 @@ public class BaseScene {
         return stack.get(top);
     }
 
-    public int getObjectCount(){
+    public int getObjectCount() {
         return objects.size();
     }
 
@@ -38,7 +38,7 @@ public class BaseScene {
         return objects.size();
     }
 
-    public int removeObject(GameObject object){
+    public int removeObject(GameObject object) {
         handler.post(new Runnable() {
             @Override
             public void run() {

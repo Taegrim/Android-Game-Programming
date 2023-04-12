@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.BuildConfig;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.game.EnemyGenerator;
 
 /**
  * TODO: document your custom view class.
