@@ -96,7 +96,7 @@ public class Player extends Sprite {
     }
 
     public void fire() {
-        Bullet bullet = new Bullet(x, y);
+        Bullet bullet = Bullet.get(x, y);
         BaseScene.getTopScene().addObject(bullet);
     }
 }

@@ -8,7 +8,7 @@ public class AnimationSprite extends Sprite {
     protected int frameCount;
     protected int frameWidth, frameHeight;
     protected float fps;
-    protected float createdTime;
+    protected long createdTime;
 
     public AnimationSprite(int resId, float x, float y, float width, float height, float fps, int frameCount) {
         super(resId, x, y, width, height);

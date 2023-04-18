@@ -7,15 +7,25 @@ import kr.ac.tukorea.sgp.s2018182024.dragonflight.R;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BaseScene;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.CollisionObject;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Metrics;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Recyclable;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.RecycleBin;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Sprite;
 
-public class Bullet extends Sprite implements CollisionObject {
+public class Bullet extends Sprite implements CollisionObject, Recyclable {
     private static final float BULLET_WIDTH = 28 * Metrics.bitmapRatio;
     private static final float BULLET_HEIGHT = 40 * Metrics.bitmapRatio;
     private static float SPEED = 20.f;
-    protected static Paint paint;
 
-    public Bullet(float x, float y) {
+    public static Bullet get(float x, float y) {
+        Bullet bullet = (Bullet) RecycleBin.get(Bullet.class);
+        if(bullet == null){
+            return new Bullet(x, y);
+        }
+        bullet.x = x;
+        bullet.y = y;
+        return bullet;
+    }
+    private Bullet(float x, float y) {
         super(R.mipmap.laser_1, x, y, BULLET_WIDTH, BULLET_HEIGHT);
         this.x = x;
         this.y = y;
@@ -35,5 +45,10 @@ public class Bullet extends Sprite implements CollisionObject {
     @Override
     public RectF getCollisionRect() {
         return rect;
+    }
+
+    @Override
+    public void onRecycle() {
+
     }
 }
