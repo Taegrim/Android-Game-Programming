@@ -7,16 +7,24 @@ import android.graphics.RectF;
 import android.os.Handler;
 import android.view.MotionEvent;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.BuildConfig;
 
 public class BaseScene {
     private static ArrayList<BaseScene> stack = new ArrayList<>();
-    protected ArrayList<GameObject> objects = new ArrayList<>();
+    protected ArrayList<ArrayList<GameObject>> layers;
     public static float frameTime;
     protected static Handler handler = new Handler();
     private static Paint collisionPaint;
+
+    public void initLayers(int count) {
+        layers = new ArrayList<>();
+        for(int i = 0; i < count; ++i) {
+            layers.add(new ArrayList<>());
+        }
+    }
 
     public static BaseScene getTopScene() {
         int top = stack.size() - 1;
@@ -33,7 +41,11 @@ public class BaseScene {
     }
 
     public int getObjectCount() {
-        return objects.size();
+        int count = 0;
+        for(ArrayList<GameObject> objects : layers) {
+            count += objects.size();
+        }
+        return count;
     }
 
     public int pushScene() {
@@ -46,40 +58,49 @@ public class BaseScene {
         return stack.size();
     }
 
-    public int addObject(GameObject object) {
+    public void addObject(int layerIndex, GameObject object) {
         handler.post(new Runnable() {
             @Override
             public void run() {
+                ArrayList<GameObject> objects = layers.get(layerIndex);
                 objects.add(object);
             }
         });
-        return objects.size();
     }
 
-    public int removeObject(GameObject object) {
+    public void removeObject(GameObject object) {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                objects.remove(object);
-
-                if(object instanceof Recyclable) {
-                  RecycleBin.collect((Recyclable) object);
+                // 레이어에서 찾아서 삭제, 없다면 다음 레이어에서 삭제
+                // 삭제되었다면 재활용
+                for(ArrayList<GameObject> objects : layers) {
+                    boolean removed = objects.remove(object);
+                    if(removed) {
+                        if(object instanceof Recyclable) {
+                            RecycleBin.collect((Recyclable) object);
+                        }
+                        break;
+                    }
                 }
             }
         });
-        return objects.size();
     }
 
     public void update(long timeElapsed) {
         frameTime = timeElapsed / 1_000_000_000f;
-        for(GameObject object : objects){
-            object.update();
+        for(ArrayList<GameObject> objects : layers) {
+            for(GameObject obj : objects){
+                obj.update();
+            }
         }
     }
 
     public void draw(Canvas canvas) {
-        for(GameObject object : objects){
-            object.draw(canvas);
+        for(ArrayList<GameObject> objects : layers) {
+            for(GameObject obj : objects){
+                obj.draw(canvas);
+            }
         }
 
         if(BuildConfig.DEBUG){
@@ -88,11 +109,13 @@ public class BaseScene {
                 collisionPaint.setStyle(Paint.Style.STROKE);
                 collisionPaint.setColor(Color.RED);
             }
-            for(GameObject obj : objects){
-                if(!(obj instanceof  CollisionObject)) continue;
+            for(ArrayList<GameObject> objects : layers) {
+                for (GameObject obj : objects) {
+                    if (!(obj instanceof CollisionObject)) continue;
 
-                RectF rect = ((CollisionObject) obj).getCollisionRect();
-                canvas.drawRect(rect, collisionPaint);
+                    RectF rect = ((CollisionObject) obj).getCollisionRect();
+                    canvas.drawRect(rect, collisionPaint);
+                }
             }
         }
     }

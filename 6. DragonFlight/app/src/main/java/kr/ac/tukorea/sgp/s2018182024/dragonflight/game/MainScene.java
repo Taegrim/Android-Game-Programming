@@ -14,11 +14,17 @@ import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Metrics;
 public class MainScene extends BaseScene {
     private static final String TAG = MainScene.class.getSimpleName();
     private final Player player;
-    public MainScene() {
-        player = new Player();
-        addObject(player);
 
-        addObject(new EnemyGenerator());
+    enum Layer {
+        ENEMY, BULLET, PLAYER, CONTROLLER, COUNT
+    }
+
+    public MainScene() {
+        initLayers(Layer.COUNT.ordinal());
+        player = new Player();
+        addObject(Layer.PLAYER.ordinal(), player);
+
+        addObject(Layer.CONTROLLER.ordinal(), new EnemyGenerator());
     }
 
     @Override
@@ -28,13 +34,13 @@ public class MainScene extends BaseScene {
     }
 
     private void checkCollision() {
-        for(GameObject o1 : objects){
+        for(GameObject o1 : layers.get(Layer.ENEMY.ordinal())){
             if(!(o1 instanceof Enemy)){
                 continue;
             }
             Enemy enemy = (Enemy) o1;
 
-            for(GameObject o2 : objects){
+            for(GameObject o2 : layers.get(Layer.BULLET.ordinal())){
                 if(!(o2 instanceof Bullet)){
                     continue;
                 }

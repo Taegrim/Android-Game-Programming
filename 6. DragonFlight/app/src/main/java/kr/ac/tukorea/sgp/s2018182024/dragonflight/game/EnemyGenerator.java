@@ -25,7 +25,7 @@ public class EnemyGenerator implements GameObject {
                 level = 0;
             if(level > Enemy.MAX_HP)
                 level = Enemy.MAX_HP;
-            scene.addObject(Enemy.get(i, level));
+            scene.addObject(MainScene.Layer.ENEMY.ordinal(), Enemy.get(i, level));
         }
     }
 
