@@ -14,13 +14,17 @@ public class MainScene extends BaseScene {
     private final Player player;
 
     enum Layer {
-        ENEMY, BULLET, PLAYER, CONTROLLER, COUNT
+        ENEMY, BULLET, PLAYER, UI, CONTROLLER, COUNT
     }
 
     public MainScene() {
         initLayers(Layer.COUNT);
         player = new Player();
         addObject(Layer.PLAYER, player);
+
+        Score score = new Score();
+        score.setScore(12345);
+        addObject(Layer.UI, score);
 
         addObject(Layer.CONTROLLER, new EnemyGenerator());
         addObject(Layer.CONTROLLER, new CollisionChecker());
