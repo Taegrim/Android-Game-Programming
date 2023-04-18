@@ -25,6 +25,10 @@ public class Sprite implements GameObject {
     }
 
     protected void fixRect() {
+        setSize(width, height);
+    }
+
+    protected void setSize(float width, float height) {
         float halfWidth = width / 2;
         float halfHeight = height / 2;
         rect.set(x - halfWidth, y - halfHeight, x + halfWidth, y + halfHeight);

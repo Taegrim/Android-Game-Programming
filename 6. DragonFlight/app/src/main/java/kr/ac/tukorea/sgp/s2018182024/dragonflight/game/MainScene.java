@@ -5,6 +5,7 @@ import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.R;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BaseScene;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.GameObject;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Metrics;
@@ -15,7 +16,7 @@ public class MainScene extends BaseScene {
     private final Score score;
 
     enum Layer {
-        ENEMY, BULLET, PLAYER, UI, CONTROLLER, COUNT
+        BG, ENEMY, BULLET, PLAYER, UI, CONTROLLER, COUNT
     }
 
     public MainScene() {
@@ -23,6 +24,8 @@ public class MainScene extends BaseScene {
         player = new Player();
         addObject(Layer.PLAYER, player);
 
+        addObject(Layer.BG, new Background(R.mipmap.bg_city));
+        addObject(Layer.BG, new Background(R.mipmap.clouds));
         score = new Score();
         addObject(Layer.UI, score);
         addObject(Layer.CONTROLLER, new EnemyGenerator());
