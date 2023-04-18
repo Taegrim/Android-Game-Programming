@@ -19,9 +19,10 @@ public class BaseScene {
     protected static Handler handler = new Handler();
     private static Paint collisionPaint;
 
-    public void initLayers(int count) {
+    protected <E extends Enum<E>> void initLayers(E enumCount) {
+        int layerCount = enumCount.ordinal();
         layers = new ArrayList<>();
-        for(int i = 0; i < count; ++i) {
+        for(int i = 0; i < layerCount; ++i) {
             layers.add(new ArrayList<>());
         }
     }
@@ -58,11 +59,11 @@ public class BaseScene {
         return stack.size();
     }
 
-    public void addObject(int layerIndex, GameObject object) {
+    public <E extends Enum<E>> void addObject(E layerIndex, GameObject object) {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                ArrayList<GameObject> objects = layers.get(layerIndex);
+                ArrayList<GameObject> objects = layers.get(layerIndex.ordinal());
                 objects.add(object);
             }
         });

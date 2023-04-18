@@ -20,11 +20,11 @@ public class MainScene extends BaseScene {
     }
 
     public MainScene() {
-        initLayers(Layer.COUNT.ordinal());
+        initLayers(Layer.COUNT);
         player = new Player();
-        addObject(Layer.PLAYER.ordinal(), player);
+        addObject(Layer.PLAYER, player);
 
-        addObject(Layer.CONTROLLER.ordinal(), new EnemyGenerator());
+        addObject(Layer.CONTROLLER, new EnemyGenerator());
     }
 
     @Override
