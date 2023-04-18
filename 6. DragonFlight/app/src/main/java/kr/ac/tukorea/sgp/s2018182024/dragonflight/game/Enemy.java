@@ -5,6 +5,7 @@ import android.graphics.RectF;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.R;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.AnimationSprite;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BaseScene;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BitmapPool;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.CollisionObject;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Metrics;
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Recyclable;
@@ -30,6 +31,10 @@ public class Enemy extends AnimationSprite implements CollisionObject, Recyclabl
         }
         enemy.x = ((Metrics.gameWidth / 10) * (2 * index + 1));
         enemy.y = -(SIZE / 2);
+        if(level != enemy.level) {
+            enemy.level = level;
+            enemy.bitmap = BitmapPool.get(resId[level]);
+        }
         return enemy;
     }
 
@@ -59,5 +64,9 @@ public class Enemy extends AnimationSprite implements CollisionObject, Recyclabl
     @Override
     public void onRecycle() {
 
+    }
+
+    public int getScore() {
+        return 100 * (level + 1);
     }
 }

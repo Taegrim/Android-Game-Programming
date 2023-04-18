@@ -27,7 +27,7 @@ public class CollisionChecker implements GameObject {
                     Log.d(TAG, "Collision!");
                     scene.removeObject(o1);
                     scene.removeObject(o2);
-                    scene.changeScore(10);
+                    scene.changeScore(enemy.getScore());
                     break;
                 }
             }

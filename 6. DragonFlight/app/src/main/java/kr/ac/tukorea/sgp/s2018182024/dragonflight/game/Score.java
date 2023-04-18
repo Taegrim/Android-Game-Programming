@@ -18,7 +18,7 @@ public class Score implements GameObject {
     private final int srcCharWidth, srcCharHeight;
     private final float perCharWidth, perCharHeight;
     private final float x, y;
-    private int score;
+    private int score, displayScore;
 
     Score() {
         this.bitmap = BitmapPool.get(R.mipmap.number_24x32);
@@ -40,15 +40,27 @@ public class Score implements GameObject {
 
     @Override
     public void update() {
+        int diff = score - displayScore;
+        if(diff == 0)
+            return;
 
+        if(-10 < diff && diff < 0) {
+            --displayScore;
+        }
+        else if(0 < diff && diff < 10) {
+            ++displayScore;
+        }
+        else {
+            displayScore += diff / 10;
+        }
     }
 
     @Override
     public void draw(Canvas canvas) {
-        int score = this.score;
+        int score = this.displayScore;
         float x = this.x;
         int exp = (int)(Math.log10(score));
-        while(exp > 0) {
+        while(exp >= 0) {
             int value = (int)Math.pow(10, exp);
             int digit = score / value;
             srcRect.set(digit * srcCharWidth, 0,
