@@ -88,6 +88,10 @@ public class BaseScene {
         });
     }
 
+    public <E extends Enum<E>> ArrayList<GameObject> getObjects(Enum layer) {
+        return layers.get(layer.ordinal());
+    }
+
     public void update(long timeElapsed) {
         frameTime = timeElapsed / 1_000_000_000f;
         for(ArrayList<GameObject> objects : layers) {
