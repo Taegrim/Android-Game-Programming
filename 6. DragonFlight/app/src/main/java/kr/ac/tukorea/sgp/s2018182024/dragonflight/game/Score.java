@@ -34,6 +34,10 @@ public class Score implements GameObject {
         this.score = score;
     }
 
+    public void changeScore(int value) {
+        score += value;
+    }
+
     @Override
     public void update() {
 
@@ -44,7 +48,7 @@ public class Score implements GameObject {
         int score = this.score;
         float x = this.x;
         int exp = (int)(Math.log10(score));
-        while(score > 0) {
+        while(exp > 0) {
             int value = (int)Math.pow(10, exp);
             int digit = score / value;
             srcRect.set(digit * srcCharWidth, 0,

@@ -12,6 +12,7 @@ import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Metrics;
 public class MainScene extends BaseScene {
     private static final String TAG = MainScene.class.getSimpleName();
     private final Player player;
+    private final Score score;
 
     enum Layer {
         ENEMY, BULLET, PLAYER, UI, CONTROLLER, COUNT
@@ -22,12 +23,14 @@ public class MainScene extends BaseScene {
         player = new Player();
         addObject(Layer.PLAYER, player);
 
-        Score score = new Score();
-        score.setScore(12345);
+        score = new Score();
         addObject(Layer.UI, score);
-
         addObject(Layer.CONTROLLER, new EnemyGenerator());
         addObject(Layer.CONTROLLER, new CollisionChecker());
+    }
+
+    public void changeScore(int value) {
+        score.changeScore(value);
     }
 
     @Override
