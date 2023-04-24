@@ -8,7 +8,7 @@ import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Metrics;
 
 public class MainScene extends BaseScene {
     private static final String TAG = MainScene.class.getSimpleName();
-    private final Player player;
+    public final Player player;
     private final Score score;
 
     enum Layer {

@@ -15,21 +15,27 @@ public class Bullet extends Sprite implements CollisionObject, Recyclable {
     private static final float BULLET_WIDTH = 28 * Metrics.bitmapRatio;
     private static final float BULLET_HEIGHT = 40 * Metrics.bitmapRatio;
     private static float SPEED = 20.f;
+    private int damage;
 
-    public static Bullet get(float x, float y) {
+    public static Bullet get(float x, float y, int power) {
         Bullet bullet = (Bullet) RecycleBin.get(Bullet.class);
         if(bullet == null){
-            return new Bullet(x, y);
+            return new Bullet(x, y, power);
         }
-        bullet.x = x;
-        bullet.y = y;
+        bullet.init(x, y, power);
         return bullet;
     }
-    private Bullet(float x, float y) {
+    private Bullet(float x, float y, int power) {
         super(R.mipmap.laser_1, x, y, BULLET_WIDTH, BULLET_HEIGHT);
+        init(x, y, power);
+    }
+
+    private void init(float x, float y, int power) {
         this.x = x;
         this.y = y;
+        this.damage = power;
     }
+
 
     @Override
     public void update() {
@@ -48,7 +54,7 @@ public class Bullet extends Sprite implements CollisionObject, Recyclable {
     }
 
     public int getDamage() {
-        return 10;
+        return damage;
     }
 
     @Override

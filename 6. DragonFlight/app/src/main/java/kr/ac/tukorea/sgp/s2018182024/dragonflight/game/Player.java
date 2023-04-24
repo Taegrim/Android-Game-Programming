@@ -30,6 +30,7 @@ public class Player extends Sprite {
     private static final float SPARK_HEIGHT = 30 * Metrics.bitmapRatio;
     private static final float SPARK_OFFSET = 0.65f;
     private float accumulatedTime;
+    private float power = 10.f;
 
     public Player() {
         super(R.mipmap.fighter, PLAYER_X, PLAYER_Y, PLAYER_WIDTH, PLAYER_HEIGHT);
@@ -86,6 +87,10 @@ public class Player extends Sprite {
         }
     }
 
+    public void changePower(int score) {
+        power += (float)score / 1000;
+    }
+
     private void checkFire() {
         accumulatedTime += BaseScene.frameTime;
         if(accumulatedTime < FIRE_INTERVAL){
@@ -96,7 +101,7 @@ public class Player extends Sprite {
     }
 
     public void fire() {
-        Bullet bullet = Bullet.get(x, y);
+        Bullet bullet = Bullet.get(x, y, (int)power);
         BaseScene.getTopScene().addObject(MainScene.Layer.BULLET, bullet);
     }
 }

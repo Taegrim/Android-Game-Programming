@@ -29,7 +29,9 @@ public class CollisionChecker implements GameObject {
                     boolean death = enemy.decreaseLife(bullet.getDamage());
                     if(death) {
                         scene.removeObject(enemy);
-                        scene.changeScore(enemy.getScore());
+                        int score = enemy.getScore();
+                        scene.changeScore(score);
+                        scene.player.changePower(score);
                     }
                     break;
                 }
