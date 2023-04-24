@@ -12,7 +12,8 @@ import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.object.Sprite;
 
 public class Player extends Sprite {
     private static final float PLAYER_X = Metrics.gameWidth / 2;
-    private static final float PLAYER_Y = Metrics.gameHeight - 1.5f;
+    private static final float PLAYER_Y_OFFSET = 1.5f;
+    private static final float PLAYER_Y = Metrics.gameHeight - PLAYER_Y_OFFSET;
     private static final float PLAYER_WIDTH = 72 * Metrics.bitmapRatio;
     private static final float PLAYER_HEIGHT = 80 * Metrics.bitmapRatio;
     private static final float TARGET_RADIUS = 0.5f;
@@ -42,8 +43,8 @@ public class Player extends Sprite {
     public void setTargetPosition(float tx, float ty) {
         this.tx = tx;
         targetRect.set(
-                tx - TARGET_RADIUS, PLAYER_Y - TARGET_RADIUS,
-                tx + TARGET_RADIUS, PLAYER_Y + TARGET_RADIUS);
+                tx - TARGET_RADIUS, y - TARGET_RADIUS,
+                tx + TARGET_RADIUS, y + TARGET_RADIUS);
     }
 
     @Override

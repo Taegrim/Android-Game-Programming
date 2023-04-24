@@ -61,44 +61,56 @@ public class BaseScene {
         return stack.size();
     }
 
-    public <E extends Enum<E>> void addObject(E layerIndex, GameObject object) {
+    public <E extends Enum<E>> void addObject(E layerIndex, GameObject object, boolean immediate) {
+        if(immediate) {
+            addObject(layerIndex, object);
+            return;
+        }
+
         handler.post(new Runnable() {
             @Override
             public void run() {
-                ArrayList<GameObject> objects = layers.get(layerIndex.ordinal());
-                objects.add(object);
+                addObject(layerIndex, object);
             }
         });
     }
 
-    public void removeObject(GameObject object) {
+    public <E extends Enum<E>> void addObject(E layerIndex, GameObject object) {
+        layers.get(layerIndex.ordinal()).add(object);
+    }
+
+    public <E extends Enum<E>> void removeObject(E layerIndex, GameObject object, boolean immediate) {
+        if(immediate) {
+            removeObject(layerIndex, object);
+            return;
+        }
+
         handler.post(new Runnable() {
             @Override
             public void run() {
                 // 레이어에서 찾아서 삭제, 없다면 다음 레이어에서 삭제
                 // 삭제되었다면 재활용
-                for(ArrayList<GameObject> objects : layers) {
-                    boolean removed = objects.remove(object);
-                    if(removed) {
-                        if(object instanceof Recyclable) {
-                            RecycleBin.collect((Recyclable) object);
-                        }
-                        break;
-                    }
-                }
+                removeObject(layerIndex, object);
             }
         });
     }
 
-    public <E extends Enum<E>> ArrayList<GameObject> getObjects(Enum layer) {
-        return layers.get(layer.ordinal());
+    public <E extends Enum<E>> void removeObject(E layerIndex, GameObject object) {
+        boolean removed = getObjects(layerIndex).remove(object);
+        if(removed && object instanceof Recyclable) {
+            RecycleBin.collect((Recyclable) object);
+        }
+    }
+
+    public <E extends Enum<E>> ArrayList<GameObject> getObjects(Enum layerIndex) {
+        return layers.get(layerIndex.ordinal());
     }
 
     public void update(long timeElapsed) {
         frameTime = timeElapsed / 1_000_000_000f;
         for(ArrayList<GameObject> objects : layers) {
-            for(GameObject obj : objects){
-                obj.update();
+            for(int i = objects.size() - 1; i >= 0; --i){
+                objects.get(i).update();
             }
         }
     }

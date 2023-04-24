@@ -35,6 +35,7 @@ public class Enemy extends AnimationSprite implements CollisionObject, Recyclabl
         }
         enemy.x = ((Metrics.gameWidth / 10) * (2 * index + 1));
         enemy.y = -(SIZE / 2);
+        enemy.fixRect();
         enemy.init(level);
         return enemy;
     }
@@ -59,7 +60,7 @@ public class Enemy extends AnimationSprite implements CollisionObject, Recyclabl
         fixRect();
 
         if(rect.top > Metrics.gameHeight){
-            BaseScene.getTopScene().removeObject(this);
+            BaseScene.getTopScene().removeObject(MainScene.Layer.ENEMY, this);
         }
         collisionRect.set(rect);
         collisionRect.inset(0.1f, 0.1f);

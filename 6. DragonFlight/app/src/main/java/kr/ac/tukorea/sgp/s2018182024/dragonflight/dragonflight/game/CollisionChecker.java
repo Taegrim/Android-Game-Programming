@@ -17,18 +17,18 @@ public class CollisionChecker implements GameObject {
         MainScene scene = (MainScene) BaseScene.getTopScene();
         ArrayList<GameObject> enemies = scene.getObjects(MainScene.Layer.ENEMY);
         ArrayList<GameObject> bullets = scene.getObjects(MainScene.Layer.BULLET);
-        for(GameObject o1 : enemies){
-            Enemy enemy = (Enemy) o1;
+        for(int i = enemies.size() - 1; i >= 0; --i){
+            Enemy enemy = (Enemy) enemies.get(i);
 
-            for(GameObject o2 : bullets){
-                Bullet bullet = (Bullet) o2;
+            for(int j = bullets.size() - 1; j >= 0; --j){
+                Bullet bullet = (Bullet) bullets.get(j);
 
                 if(CollisionHelper.collide(enemy, bullet)){
                     Log.d(TAG, "Collision!");
-                    scene.removeObject(bullet);
+                    scene.removeObject(MainScene.Layer.BULLET, bullet);
                     boolean death = enemy.decreaseLife(bullet.getDamage());
                     if(death) {
-                        scene.removeObject(enemy);
+                        scene.removeObject(MainScene.Layer.ENEMY, enemy);
                         int score = enemy.getScore();
                         scene.changeScore(score);
                         scene.player.changePower(score);

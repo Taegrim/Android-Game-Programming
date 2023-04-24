@@ -22,6 +22,7 @@ public class Bullet extends Sprite implements CollisionObject, Recyclable {
             return new Bullet(x, y, power);
         }
         bullet.init(x, y, power);
+        bullet.fixRect();
         return bullet;
     }
     private Bullet(float x, float y, int power) {
@@ -43,7 +44,7 @@ public class Bullet extends Sprite implements CollisionObject, Recyclable {
         fixRect();
 
         if(rect.bottom < 0){
-            BaseScene.getTopScene().removeObject(this);
+            BaseScene.getTopScene().removeObject(MainScene.Layer.BULLET, this);
         }
     }
 
