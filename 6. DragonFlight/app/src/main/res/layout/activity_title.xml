@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/bg_city"
-    tools:context=".app.TitleActivity">
+    tools:context=".dragonflight.app.TitleActivity">
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             android:gravity="center"
             android:layout_marginBottom="30dp"
             android:padding="20dp"
-            android:background="@color/main_title_bg"
+            android:background="@drawable/title_bg"
             android:textColor="@color/main_title_fg"
             >
         </TextView>
@@ -48,7 +48,6 @@
             >
         </Button>
         <Button
-            android:onClick="onBtnProgress"
             android:text="@string/titleBtn_high_score"
             style="@style/Title_Button"
             >

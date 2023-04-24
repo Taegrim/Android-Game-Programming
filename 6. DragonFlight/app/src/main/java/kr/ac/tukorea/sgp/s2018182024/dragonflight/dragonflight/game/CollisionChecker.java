@@ -1,13 +1,13 @@
-package kr.ac.tukorea.sgp.s2018182024.dragonflight.game;
+package kr.ac.tukorea.sgp.s2018182024.dragonflight.dragonflight.game;
 
 import android.graphics.Canvas;
 import android.util.Log;
 
 import java.util.ArrayList;
 
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BaseScene;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.CollisionHelper;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.GameObject;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.scene.BaseScene;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.util.CollisionHelper;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.interfaces.GameObject;
 
 public class CollisionChecker implements GameObject {
     private static final String TAG = CollisionChecker.class.getSimpleName();

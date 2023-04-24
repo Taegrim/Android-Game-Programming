@@ -1,4 +1,4 @@
-package kr.ac.tukorea.sgp.s2018182024.dragonflight.framework;
+package kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.view;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.BuildConfig;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.scene.BaseScene;
 
 /**
  * TODO: document your custom view class.

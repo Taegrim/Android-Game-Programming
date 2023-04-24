@@ -1,17 +1,17 @@
-package kr.ac.tukorea.sgp.s2018182024.dragonflight.game;
+package kr.ac.tukorea.sgp.s2018182024.dragonflight.dragonflight.game;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.R;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.AnimationSprite;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BaseScene;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BitmapPool;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.CollisionObject;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Gauge;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Metrics;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Recyclable;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.RecycleBin;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.object.AnimationSprite;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.scene.BaseScene;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.resource.BitmapPool;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.interfaces.CollisionObject;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.util.Gauge;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.view.Metrics;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.interfaces.Recyclable;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.scene.RecycleBin;
 
 public class Enemy extends AnimationSprite implements CollisionObject, Recyclable {
     private static final float SIZE = Metrics.gameWidth / 5;

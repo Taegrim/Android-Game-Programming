@@ -1,14 +1,14 @@
-package kr.ac.tukorea.sgp.s2018182024.dragonflight.game;
+package kr.ac.tukorea.sgp.s2018182024.dragonflight.dragonflight.game;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.R;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BaseScene;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BitmapPool;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Metrics;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Sprite;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.scene.BaseScene;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.resource.BitmapPool;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.view.Metrics;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.object.Sprite;
 
 public class Player extends Sprite {
     private static final float PLAYER_X = Metrics.gameWidth / 2;

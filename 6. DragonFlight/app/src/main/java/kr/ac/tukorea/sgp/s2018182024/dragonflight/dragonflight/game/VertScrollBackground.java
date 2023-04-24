@@ -1,9 +1,9 @@
-package kr.ac.tukorea.sgp.s2018182024.dragonflight.game;
+package kr.ac.tukorea.sgp.s2018182024.dragonflight.dragonflight.game;
 
 import android.graphics.Canvas;
 
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BaseScene;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Metrics;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.scene.BaseScene;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.view.Metrics;
 
 public class VertScrollBackground extends Background {
     private final float speed;

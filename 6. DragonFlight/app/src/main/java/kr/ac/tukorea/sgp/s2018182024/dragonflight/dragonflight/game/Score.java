@@ -1,14 +1,13 @@
-package kr.ac.tukorea.sgp.s2018182024.dragonflight.game;
+package kr.ac.tukorea.sgp.s2018182024.dragonflight.dragonflight.game;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.util.Log;
 
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.R;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BitmapPool;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.GameObject;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.resource.BitmapPool;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.interfaces.GameObject;
 
 public class Score implements GameObject {
     private static final String TAG = Score.class.getSimpleName();

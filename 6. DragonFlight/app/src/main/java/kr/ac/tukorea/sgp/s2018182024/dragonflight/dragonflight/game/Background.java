@@ -1,8 +1,7 @@
-package kr.ac.tukorea.sgp.s2018182024.dragonflight.game;
+package kr.ac.tukorea.sgp.s2018182024.dragonflight.dragonflight.game;
 
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BaseScene;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Metrics;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Sprite;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.view.Metrics;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.object.Sprite;
 
 public class Background extends Sprite {
 

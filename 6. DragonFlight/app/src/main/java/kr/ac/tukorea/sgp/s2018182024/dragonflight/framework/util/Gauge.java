@@ -1,11 +1,11 @@
-package kr.ac.tukorea.sgp.s2018182024.dragonflight.framework;
+package kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.util;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import androidx.core.content.res.ResourcesCompat;
 
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.GameView;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.view.GameView;
 
 public class Gauge {
     private Paint fgPaint = new Paint();

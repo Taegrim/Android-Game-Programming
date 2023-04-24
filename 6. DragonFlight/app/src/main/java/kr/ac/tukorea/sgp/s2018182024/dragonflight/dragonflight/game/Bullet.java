@@ -1,15 +1,14 @@
-package kr.ac.tukorea.sgp.s2018182024.dragonflight.game;
+package kr.ac.tukorea.sgp.s2018182024.dragonflight.dragonflight.game;
 
-import android.graphics.Paint;
 import android.graphics.RectF;
 
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.R;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BaseScene;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.CollisionObject;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Metrics;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Recyclable;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.RecycleBin;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.Sprite;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.scene.BaseScene;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.interfaces.CollisionObject;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.view.Metrics;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.interfaces.Recyclable;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.scene.RecycleBin;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.object.Sprite;
 
 public class Bullet extends Sprite implements CollisionObject, Recyclable {
     private static final float BULLET_WIDTH = 28 * Metrics.bitmapRatio;

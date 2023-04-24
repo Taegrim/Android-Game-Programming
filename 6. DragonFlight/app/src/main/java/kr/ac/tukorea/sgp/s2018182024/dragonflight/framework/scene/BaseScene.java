@@ -1,4 +1,4 @@
-package kr.ac.tukorea.sgp.s2018182024.dragonflight.framework;
+package kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.scene;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -7,10 +7,12 @@ import android.graphics.RectF;
 import android.os.Handler;
 import android.view.MotionEvent;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.BuildConfig;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.interfaces.CollisionObject;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.interfaces.GameObject;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.interfaces.Recyclable;
 
 public class BaseScene {
     private static ArrayList<BaseScene> stack = new ArrayList<>();
