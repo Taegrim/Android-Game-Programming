@@ -18,7 +18,7 @@ public class Enemy extends AnimationSprite implements CollisionObject, Recyclabl
     private int level;
     protected int life, maxLife;
     private RectF collisionRect = new RectF();
-    private Guage guage = new Guage();
+    private Guage guage = new Guage(0.1f);
     private static final int[] resId = {
             R.mipmap.enemy_01, R.mipmap.enemy_02, R.mipmap.enemy_03, R.mipmap.enemy_04, R.mipmap.enemy_05,
             R.mipmap.enemy_06, R.mipmap.enemy_07, R.mipmap.enemy_08, R.mipmap.enemy_09, R.mipmap.enemy_10,
@@ -69,8 +69,9 @@ public class Enemy extends AnimationSprite implements CollisionObject, Recyclabl
         super.draw(canvas);
 
         canvas.save();
-        canvas.translate(rect.left, rect.bottom);
-        canvas.scale(rect.width(), rect.height());
+        float width = rect.width() * 0.75f;
+        canvas.translate(x - width / 2, rect.bottom);
+        canvas.scale(width, 1.f);
         guage.draw(canvas, (float)this.life / this.maxLife);
         canvas.restore();
     }

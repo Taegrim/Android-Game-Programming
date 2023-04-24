@@ -8,13 +8,13 @@ public class Guage {
     private Paint fgPaint = new Paint();
     private Paint bgPaint = new Paint();
 
-    public Guage() {
+    public Guage(float width) {
         bgPaint.setStyle(Paint.Style.STROKE);
-        bgPaint.setStrokeWidth(0.2f);
+        bgPaint.setStrokeWidth(width);
         bgPaint.setColor(Color.YELLOW);
         bgPaint.setStrokeCap(Paint.Cap.ROUND);
         fgPaint.setStyle(Paint.Style.STROKE);
-        fgPaint.setStrokeWidth(0.15f);
+        fgPaint.setStrokeWidth(width * (float)0.75);
         fgPaint.setColor(Color.RED);
         fgPaint.setStrokeCap(Paint.Cap.ROUND);
     }
