@@ -47,6 +47,10 @@ public class Bullet extends Sprite implements CollisionObject, Recyclable {
         return rect;
     }
 
+    public int getDamage() {
+        return 10;
+    }
+
     @Override
     public void onRecycle() {
 

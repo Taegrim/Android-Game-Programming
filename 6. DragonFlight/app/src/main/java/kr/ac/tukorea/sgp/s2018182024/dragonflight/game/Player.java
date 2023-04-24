@@ -24,7 +24,7 @@ public class Player extends Sprite {
     private final Bitmap targetBitmap, sparkBitmap;
     private final RectF targetRect = new RectF();
     private final RectF sparkRect = new RectF();
-    private static final float FIRE_INTERVAL = 0.25f;
+    private static final float FIRE_INTERVAL = 1.f;
     private static final float SPARK_DURATION = FIRE_INTERVAL * 0.4f;
     private static final float SPARK_WIDTH = 50 * Metrics.bitmapRatio;
     private static final float SPARK_HEIGHT = 30 * Metrics.bitmapRatio;

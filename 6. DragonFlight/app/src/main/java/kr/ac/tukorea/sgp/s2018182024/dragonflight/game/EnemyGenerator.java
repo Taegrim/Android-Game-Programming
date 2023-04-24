@@ -23,8 +23,8 @@ public class EnemyGenerator implements GameObject {
             int level = (wave + 5) / 5 - r.nextInt(3);
             if(level < 0)
                 level = 0;
-            if(level > Enemy.MAX_HP)
-                level = Enemy.MAX_HP;
+            if(level > Enemy.MAX_LEVEL)
+                level = Enemy.MAX_LEVEL;
             scene.addObject(MainScene.Layer.ENEMY, Enemy.get(i, level));
         }
     }

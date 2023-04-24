@@ -20,8 +20,8 @@ public class MainScene extends BaseScene {
         player = new Player();
         addObject(Layer.PLAYER, player);
 
-        addObject(Layer.BG1, new HorzScrollBackground(R.mipmap.bg_city, 0.4f));
-        addObject(Layer.BG2, new HorzScrollBackground(R.mipmap.clouds, 0.6f));
+        addObject(Layer.BG1, new VertScrollBackground(R.mipmap.bg_city, 0.4f));
+        addObject(Layer.BG2, new VertScrollBackground(R.mipmap.clouds, 0.6f));
         score = new Score();
         addObject(Layer.UI, score);
         addObject(Layer.CONTROLLER, new EnemyGenerator());
