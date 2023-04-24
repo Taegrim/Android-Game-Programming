@@ -6,6 +6,9 @@ android {
     namespace 'kr.ac.tukorea.sgp.s2018182024.dragonflight'
     compileSdk 33
 
+    buildFeatures {
+        viewBinding = true
+    }
     defaultConfig {
         applicationId "kr.ac.tukorea.sgp.s2018182024.dragonflight"
         minSdk 21
