@@ -1,5 +1,6 @@
 package kr.ac.tukorea.sgp.s2018182024.dragonflight.game;
 
+import android.graphics.Canvas;
 import android.graphics.RectF;
 
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.R;
@@ -17,6 +18,7 @@ public class Enemy extends AnimationSprite implements CollisionObject, Recyclabl
     private int level;
     protected int life, maxLife;
     private RectF collisionRect = new RectF();
+    private Guage guage = new Guage();
     private static final int[] resId = {
             R.mipmap.enemy_01, R.mipmap.enemy_02, R.mipmap.enemy_03, R.mipmap.enemy_04, R.mipmap.enemy_05,
             R.mipmap.enemy_06, R.mipmap.enemy_07, R.mipmap.enemy_08, R.mipmap.enemy_09, R.mipmap.enemy_10,
@@ -60,6 +62,17 @@ public class Enemy extends AnimationSprite implements CollisionObject, Recyclabl
         }
         collisionRect.set(rect);
         collisionRect.inset(0.1f, 0.1f);
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
+
+        canvas.save();
+        canvas.translate(rect.left, rect.bottom);
+        canvas.scale(rect.width(), rect.height());
+        guage.draw(canvas, (float)this.life / this.maxLife);
+        canvas.restore();
     }
 
     @Override
