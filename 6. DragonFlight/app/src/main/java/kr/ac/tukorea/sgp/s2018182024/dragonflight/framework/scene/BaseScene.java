@@ -139,6 +139,10 @@ public class BaseScene {
         }
     }
 
+    public boolean clipsRect() {
+        return true;
+    }
+
     public boolean onTouchEvent(MotionEvent event) {
         return false;
     }
