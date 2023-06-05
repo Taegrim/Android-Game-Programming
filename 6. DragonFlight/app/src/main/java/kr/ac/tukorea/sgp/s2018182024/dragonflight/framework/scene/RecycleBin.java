@@ -1,7 +1,9 @@
-package kr.ac.tukorea.sgp.s2018182024.dragonflight.framework;
+package kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.scene;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.interfaces.Recyclable;
 
 public class RecycleBin {
     private static HashMap<Class, ArrayList<Recyclable>> recycleBin = new HashMap<>();

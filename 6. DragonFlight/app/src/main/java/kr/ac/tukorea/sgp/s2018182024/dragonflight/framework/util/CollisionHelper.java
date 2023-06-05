@@ -1,8 +1,8 @@
-package kr.ac.tukorea.sgp.s2018182024.dragonflight.framework;
+package kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.util;
 
 import android.graphics.RectF;
 
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.CollisionObject;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.interfaces.CollisionObject;
 
 public class CollisionHelper {
     public static boolean collide(CollisionObject obj1, CollisionObject obj2){

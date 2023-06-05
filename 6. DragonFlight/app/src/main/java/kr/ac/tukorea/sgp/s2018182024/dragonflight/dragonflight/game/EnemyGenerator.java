@@ -1,12 +1,12 @@
-package kr.ac.tukorea.sgp.s2018182024.dragonflight.game;
+package kr.ac.tukorea.sgp.s2018182024.dragonflight.dragonflight.game;
 
 import android.graphics.Canvas;
 import android.util.Log;
 
 import java.util.Random;
 
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.BaseScene;
-import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.GameObject;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.scene.BaseScene;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.interfaces.GameObject;
 
 public class EnemyGenerator implements GameObject {
     private static final String TAG = EnemyGenerator.class.getSimpleName();
@@ -23,8 +23,8 @@ public class EnemyGenerator implements GameObject {
             int level = (wave + 5) / 5 - r.nextInt(3);
             if(level < 0)
                 level = 0;
-            if(level > Enemy.MAX_HP)
-                level = Enemy.MAX_HP;
+            if(level > Enemy.MAX_LEVEL)
+                level = Enemy.MAX_LEVEL;
             scene.addObject(MainScene.Layer.ENEMY, Enemy.get(i, level));
         }
     }

@@ -1,4 +1,4 @@
-package kr.ac.tukorea.sgp.s2018182024.dragonflight.framework;
+package kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.view;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import kr.ac.tukorea.sgp.s2018182024.dragonflight.BuildConfig;
+import kr.ac.tukorea.sgp.s2018182024.dragonflight.framework.scene.BaseScene;
 
 /**
  * TODO: document your custom view class.
@@ -55,6 +56,11 @@ public class GameView extends View implements Choreographer.FrameCallback {
         }
     }
 
+    public void setFullScreen() {
+        setSystemUiVisibility(View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN |
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+    }
+
     @Override
     protected void onSizeChanged(int w, int h, int oldW, int oldH) {
         super.onSizeChanged(w, h, oldW, oldH);
@@ -70,7 +76,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
         }
         else{
             Metrics.xOffset = 0;
-            Metrics.yOffset = (int) ((h - w * gameRatio) / 2);
+            Metrics.yOffset = (int) ((h - w / gameRatio) / 2);
             Metrics.scale = w / Metrics.gameWidth;
         }
     }
@@ -98,6 +104,9 @@ public class GameView extends View implements Choreographer.FrameCallback {
         canvas.scale(Metrics.scale, Metrics.scale);
         BaseScene scene = BaseScene.getTopScene();
         if(scene != null){
+            if(scene.clipsRect()){
+                canvas.clipRect(0, 0, Metrics.gameWidth, Metrics.gameHeight);
+            }
             scene.draw(canvas);
         }
 

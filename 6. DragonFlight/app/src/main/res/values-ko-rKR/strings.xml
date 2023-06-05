@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DragonFlight</string>
+    <string name="title_dragon_flight">Dragon Flight</string>
+    <string name="titleBtn_start_game">게임 시작</string>
+    <string name="titleBtn_high_score">하이 스코어</string>
+</resources>
